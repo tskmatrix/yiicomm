@@ -3,6 +3,7 @@
 namespace common\models;
 
 use Yii;
+use common\models\YiicommActiveRecord;
 
 /**
  * This is the model class for table "campaigns".
@@ -32,7 +33,7 @@ use Yii;
  * @property Campaignproducts[] $campaignproducts
  * @property Campaigntypes $campaignType
  */
-class Campaigns extends \yii\db\ActiveRecord
+class Campaigns extends YiicommActiveRecord
 {
     /**
      * @inheritdoc

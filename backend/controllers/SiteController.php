@@ -6,6 +6,11 @@ use yii\filters\AccessControl;
 use yii\web\Controller;
 use common\models\LoginForm;
 use yii\filters\VerbFilter;
+use common\models\Customers;
+use common\models\Orderstatuses;
+use common\models\Orderdetails;
+use common\models\Orders;
+use common\models\Campaigns;
 
 /**
  * Site controller
@@ -55,7 +60,38 @@ class SiteController extends Controller
 
     public function actionIndex()
     {
-        return $this->render('index');
+    	/**
+    	 * fetch a count of customers
+    	 */
+    	$custCount = Customers::find()->count();
+    	/**
+    	 * fetch the orders for today
+    	 */
+    	$orders = Orderstatuses::find()->where('StatusOrder = 1') ->count();
+    	/**
+    	 * fetch the visitor count from the ebsite
+    	 */
+    	$vistors = 0;
+    	/**
+    	 * fetch the profit year to date
+    	 */
+    	$profitytd = Orderdetails::find()->all();
+    	/**
+    	 * fetch todays profit
+    	 */
+    	$todayprofit = Orders::find()->with(['orderdetails', 'orderStatus'])->where('OrderStatusId = 1')->all();
+    	/**
+    	 * fetch the count of active campaigns
+    	 */
+    	$campaigncount = Campaigns::find()->where('EndedOn = NULL')->count();
+    	
+        return $this->render('index',[
+        		'custCount' => $custCount,
+        		'orders' => $orders,
+        		'profitytd' => $profitytd,
+        		'todayprofit' => $todayprofit,
+        		'campaigncount' => $campaigncount,
+			]);
     }
 
     public function actionLogin()

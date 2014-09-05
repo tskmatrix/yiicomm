@@ -19,7 +19,7 @@ use Yii;
  *
  * @property User[] $users
  */
-class Usertypes extends \yii\db\ActiveRecord
+class Usertypes extends YiicommActiveRecord
 {
     /**
      * @inheritdoc

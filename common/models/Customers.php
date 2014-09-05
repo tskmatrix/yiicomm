@@ -3,6 +3,7 @@
 namespace common\models;
 
 use Yii;
+use common\models\YiicommActiveRecord;
 
 /**
  * This is the model class for table "customers".
@@ -26,7 +27,7 @@ use Yii;
  * @property Affiliates[] $affiliates
  * @property Giftcardhistories[] $giftcardhistories
  */
-class Customers extends \yii\db\ActiveRecord
+class Customers extends YiicommActiveRecord
 {
     /**
      * @inheritdoc

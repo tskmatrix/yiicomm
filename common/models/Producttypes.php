@@ -19,7 +19,7 @@ use Yii;
  *
  * @property Products[] $products
  */
-class Producttypes extends \yii\db\ActiveRecord
+class Producttypes extends YiicommActiveRecord
 {
     /**
      * @inheritdoc

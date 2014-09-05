@@ -24,7 +24,7 @@ use Yii;
  *
  * @property Products[] $products
  */
-class Productcategories extends \yii\db\ActiveRecord
+class Productcategories extends YiicommActiveRecord
 {
     /**
      * @inheritdoc
