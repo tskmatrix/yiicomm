@@ -5,7 +5,7 @@ protected/runtime/*
 protected/data/*.db
 themes/classic/views/
 .settings/*
-.project/*
+.project
 .buildpath
 
 # =========================
@@ -20,7 +20,7 @@ themes/classic/views/
 .LSOverride
 
 # Icon must ends with two \r.
-Icon
+Icon
 
 # Thumbnails
 ._*
