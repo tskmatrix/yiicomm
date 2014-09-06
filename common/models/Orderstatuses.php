@@ -3,6 +3,7 @@
 namespace common\models;
 
 use Yii;
+use common\models\YiicommActiveRecord;
 
 /**
  * This is the model class for table "orderstatuses".
@@ -20,7 +21,7 @@ use Yii;
  *
  * @property Orders[] $orders
  */
-class Orderstatuses extends \yii\db\ActiveRecord
+class Orderstatuses extends YiicommActiveRecord
 {
     /**
      * @inheritdoc

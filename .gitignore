@@ -5,7 +5,7 @@ protected/runtime/*
 protected/data/*.db
 themes/classic/views/
 .settings/*
-.project/*
+.project
 .buildpath
 
 # =========================

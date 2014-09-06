@@ -19,7 +19,7 @@ use Yii;
  * @property integer $updated_at
  * @property integer $deleted_at
  */
-class Warehouses extends \yii\db\ActiveRecord
+class Warehouses extends YiicommActiveRecord
 {
     /**
      * @inheritdoc

@@ -4,6 +4,7 @@ namespace common\models;
 
 use Yii;
 
+
 /**
  * This is the model class for table "userrestdata".
  *
@@ -20,7 +21,7 @@ use Yii;
  *
  * @property User $user
  */
-class Userrestdata extends \yii\db\ActiveRecord
+class Userrestdata extends YiicommActiveRecord
 {
     /**
      * @inheritdoc

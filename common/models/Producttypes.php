@@ -3,6 +3,7 @@
 namespace common\models;
 
 use Yii;
+use common\models\YiicommActiveRecord;
 
 /**
  * This is the model class for table "producttypes".
@@ -19,7 +20,7 @@ use Yii;
  *
  * @property Products[] $products
  */
-class Producttypes extends \yii\db\ActiveRecord
+class Producttypes extends YiicommActiveRecord
 {
     /**
      * @inheritdoc

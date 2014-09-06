@@ -81,7 +81,7 @@ class User extends ActiveRecord implements IdentityInterface
             [
             'class' => BlameableBehavior::className(),
             'createdByAttribute' => 'created_by',
-            'updatedByAttribute' => 'LastUpdatedeBy',
+            'updatedByAttribute' => 'LastUpdatedBy',
             ],
     
         ];

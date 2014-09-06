@@ -25,7 +25,7 @@ AppAsset::register($this);
     <div class="wrap">
         <?php
             NavBar::begin([
-                'brandLabel' => 'My Company',
+                'brandLabel' => 'Yiicomm Administration',
                 'brandUrl' => Yii::$app->homeUrl,
                 'options' => [
                     'class' => 'navbar-inverse navbar-fixed-top',
@@ -34,6 +34,24 @@ AppAsset::register($this);
             $menuItems = [
                 ['label' => 'Home', 'url' => ['/site/index']],
             ];
+            
+            if(!Yii::$app->user->isGuest)
+            {
+            	$menuItems[] = ['label' => 'Products', 'items' => [
+		            	['label'=> 'Product Categories', 'url' => ['/productcategories/index']],
+		            	['label'=> 'Product Types', 'url' => ['/producttypes/index']],
+		            	['label'=> 'Products', 'url' => ['/products/index']],
+		            	['label'=> 'Product Medias', 'url' => ['/productmedias/index']],
+		            	['label'=> 'Related Products', 'url' => ['/productsrelated/index']],
+		            	['label'=> 'Product Combinations', 'url' => ['/productoptioncombinations/index']],
+		            	['label'=> 'Product Option Group Members', 'url' => ['/productoptiongroupmembers/index']],
+		            	['label'=> 'Product Option Groups', 'url' => ['/productoptiongroups/index']],
+		            	['label'=> 'Product Options', 'url' => ['/productoptions/index']],
+		            	['label'=> 'Product Price Histories', 'url' => ['/productpricehistories/index']],
+		            	['label'=> 'Product Vote Histories', 'url' => ['/productvotehistories/index']],
+	            	]];
+            }
+            
             if (Yii::$app->user->isGuest) {
                 $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
             } else {
@@ -43,6 +61,7 @@ AppAsset::register($this);
                     'linkOptions' => ['data-method' => 'post']
                 ];
             }
+            
             echo Nav::widget([
                 'options' => ['class' => 'navbar-nav navbar-right'],
                 'items' => $menuItems,
@@ -60,7 +79,7 @@ AppAsset::register($this);
 
     <footer class="footer">
         <div class="container">
-        <p class="pull-left">&copy; My Company <?= date('Y') ?></p>
+        <p class="pull-left">&copy; TSKmatrix <?= date('Y') ?></p>
         <p class="pull-right"><?= Yii::powered() ?></p>
         </div>
     </footer>
