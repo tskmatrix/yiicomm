@@ -32,7 +32,7 @@ class YiicommActiveRecord extends ActiveRecord
     	[
     	'class' => BlameableBehavior::className(),
     	'createdByAttribute' => 'created_by',
-    	'updatedByAttribute' => 'LastUpdatedeBy',
+    	'updatedByAttribute' => 'LastUpdatedBy',
     	],
     
     	];

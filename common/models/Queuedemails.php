@@ -3,6 +3,7 @@
 namespace common\models;
 
 use Yii;
+use common\models\YiicommActiveRecord;
 
 /**
  * This is the model class for table "queuedemails".
@@ -27,7 +28,7 @@ use Yii;
  * @property integer $updated_at
  * @property integer $deleted_at
  */
-class Queuedemails extends \yii\db\ActiveRecord
+class Queuedemails extends YiicommActiveRecord
 {
     /**
      * @inheritdoc

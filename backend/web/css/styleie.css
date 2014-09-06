@@ -1,0 +1,8 @@
+.widget .table-hover  tr:hover > th,
+.widget .table-hover  tr:hover > td {
+    outline: 0;
+}
+.widget .table-bordered.table-hover  tr:hover > th,
+.widget .table-bordered.table-hover  tr:hover > td {
+    outline: 1px solid #ddd;
+}

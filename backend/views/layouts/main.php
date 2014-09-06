@@ -1,5 +1,5 @@
 <?php
-use backend\assets\IndexAsset;
+use backend\assets\AppAsset;
 use yii\helpers\Html;
 use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
@@ -8,7 +8,7 @@ use yii\widgets\Breadcrumbs;
 /* @var $this \yii\web\View */
 /* @var $content string */
 
-IndexAsset::register($this);
+AppAsset::register($this);
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -33,13 +33,25 @@ IndexAsset::register($this);
             ]);
             $menuItems = [
                 ['label' => 'Home', 'url' => ['/site/index']],
-                ['label' => 'Products', 'items' => [
-					['label'=> 'Product Categories', 'url' => ['/productcategories/index']],
-					['label'=> 'Product Types', 'url' => ['/producttypes/index']],
-					['label'=> 'Products', 'url' => ['/products/index']],
-					['label'=> 'Product Medias', 'url' => ['/productmedias/index']],
-            ]],
             ];
+            
+            if(!Yii::$app->user->isGuest)
+            {
+            	$menuItems[] = ['label' => 'Products', 'items' => [
+		            	['label'=> 'Product Categories', 'url' => ['/productcategories/index']],
+		            	['label'=> 'Product Types', 'url' => ['/producttypes/index']],
+		            	['label'=> 'Products', 'url' => ['/products/index']],
+		            	['label'=> 'Product Medias', 'url' => ['/productmedias/index']],
+		            	['label'=> 'Related Products', 'url' => ['/productsrelated/index']],
+		            	['label'=> 'Product Combinations', 'url' => ['/productoptioncombinations/index']],
+		            	['label'=> 'Product Option Group Members', 'url' => ['/productoptiongroupmembers/index']],
+		            	['label'=> 'Product Option Groups', 'url' => ['/productoptiongroups/index']],
+		            	['label'=> 'Product Options', 'url' => ['/productoptions/index']],
+		            	['label'=> 'Product Price Histories', 'url' => ['/productpricehistories/index']],
+		            	['label'=> 'Product Vote Histories', 'url' => ['/productvotehistories/index']],
+	            	]];
+            }
+            
             if (Yii::$app->user->isGuest) {
                 $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
             } else {

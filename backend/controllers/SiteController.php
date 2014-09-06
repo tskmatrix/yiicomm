@@ -11,6 +11,7 @@ use common\models\Orderstatuses;
 use common\models\Orderdetails;
 use common\models\Orders;
 use common\models\Campaigns;
+use common\models\Queuedemails;
 
 /**
  * Site controller
@@ -31,10 +32,15 @@ class SiteController extends Controller
                         'allow' => true,
                     ],
                     [
-                        'actions' => ['logout', 'index'],
+                        'actions' => ['logout'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
+                    [
+						'actions' => ['index'],
+						'allow' => true,
+						'roles' => ['superuser', 'productadmin', 'marketingadmin', 'suppliersadmin'],
+			        ],
                 ],
             ],
             'verbs' => [
@@ -84,6 +90,10 @@ class SiteController extends Controller
     	 * fetch the count of active campaigns
     	 */
     	$campaigncount = Campaigns::find()->where('EndedOn = NULL')->count();
+    	/**
+    	 * count of queued emails
+    	 */
+    	$countQueued = Queuedemails::find()->where('SentOn <> NULL')->count();
     	
         return $this->render('index',[
         		'custCount' => $custCount,
@@ -91,6 +101,7 @@ class SiteController extends Controller
         		'profitytd' => $profitytd,
         		'todayprofit' => $todayprofit,
         		'campaigncount' => $campaigncount,
+        		'countQueued' => $countQueued,
 			]);
     }
 

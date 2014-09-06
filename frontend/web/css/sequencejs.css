@@ -52,18 +52,17 @@
 #sequence-theme .next,
 #sequence-theme .prev {
   display: block;
-  width: 50px;
-  background-color: #4a778e;
+  width: 45px;
+  background-color: #444;
   text-align: center;
   color: white;
   cursor: pointer;
   display: none;
-  font-weight: bold;
-  padding: 10px 15px;
+  font-weight: normal;
   position: absolute;
-  top: 55%;
+  bottom: 0%;
   z-index: 1000;
-  height: 50px;
+  height: 45px;
   margin-top: -47.5px;
   vertical-align: middle;
 }
@@ -101,16 +100,16 @@
 }
 #sequence-theme .prev {
   left: 0;
-  -webkit-border-top-right-radius: 6px;
-  -webkit-border-bottom-right-radius: 6px;
+  -webkit-border-top-right-radius: 0px;
+  -webkit-border-bottom-right-radius: 0px;
   -webkit-border-bottom-left-radius: 0;
   -webkit-border-top-left-radius: 0;
-  -moz-border-radius-topright: 6px;
-  -moz-border-radius-bottomright: 6px;
+  -moz-border-radius-topright: 0px;
+  -moz-border-radius-bottomright: 0px;
   -moz-border-radius-bottomleft: 0;
   -moz-border-radius-topleft: 0;
-  border-top-right-radius: 6px;
-  border-bottom-right-radius: 6px;
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
   border-bottom-left-radius: 0;
   border-top-left-radius: 0;
   -moz-background-clip: padding;
@@ -121,19 +120,20 @@
   
 }
 #sequence-theme .next {
-  right: 0;
+  left:4.1%;
+  left:5% \9;
   -webkit-border-top-right-radius: 0;
   -webkit-border-bottom-right-radius: 0;
-  -webkit-border-bottom-left-radius: 6px;
-  -webkit-border-top-left-radius: 6px;
+  -webkit-border-bottom-left-radius: 0px;
+  -webkit-border-top-left-radius: 0px;
   -moz-border-radius-topright: 0;
   -moz-border-radius-bottomright: 0;
-  -moz-border-radius-bottomleft: 6px;
-  -moz-border-radius-topleft: 6px;
+  -moz-border-radius-bottomleft: 0px;
+  -moz-border-radius-topleft: 0px;
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
-  border-bottom-left-radius: 6px;
-  border-top-left-radius: 6px;
+  border-bottom-left-radius: 0px;
+  border-top-left-radius: 0px;
   -moz-background-clip: padding;
   -webkit-background-clip: padding-box;
   background-clip: padding-box;
@@ -208,6 +208,7 @@
   -moz-transition-duration: 1s;
   -webkit-transition-duration: 1s;
   transition-duration: 1s;
+  background-color:#F96E5B;
 }
 /* MAIN TITLES ********************************************************************************************************/
 /* IMAGES *//**********************************************************************************************************/
@@ -299,7 +300,7 @@
   transition-duration: 0.5s;
 }
 #sequence-theme .text .title {
-  color: #4a778e;
+  color: #F96E5B;
   font-size: 24px;
   line-height: 24px;
 }
