@@ -1209,7 +1209,7 @@ address ul.unstyled a {
   margin-top: 30px;
 }
 @media (min-width: 768px) and (max-width: 979px) {
-  .portfolio article.span3 {
+  .portfolio article.col-md-3 { /*span3*/
     width: 228px;
   }
 }
@@ -3145,7 +3145,7 @@ address ul.unstyled a {
   }
 }
 @media (min-width: 768px) and (max-width: 979px) {
-  .sidebar.span3 {
+  .sidebar.col-md-3 { /*span3*/
     width: 31.491712707182323% !important;
   }
 }

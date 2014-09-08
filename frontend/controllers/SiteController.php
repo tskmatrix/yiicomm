@@ -12,6 +12,8 @@ use yii\web\BadRequestHttpException;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
+use common\models\Productcategories;
+use common\models\Products;
 
 /**
  * Site controller
@@ -67,7 +69,21 @@ class SiteController extends Controller
 
     public function actionIndex()
     {
-        return $this->render('index');
+    	$subcats = array();
+    	
+    	$categories = Productcategories::find()->where('ParentProductCategoryId= 0')->asArray()->all();
+    	foreach($categories as $row)
+    	{
+    		$sub = Productcategories::find()->where('ParentProductCategoryId = '. $row['ProductCategoryId'])->asArray()->all();
+    		array_push($subcats, $sub);
+    	}
+    	
+    	$featuredProducts = Products::find()->with('productmedias')->asArray()->where('IsFeatured = 1')->all();
+    	
+        return $this->render('index',['categories'=>$categories,
+        							  'subcats' => $subcats,
+									  'featuredProducts' =>$featuredProducts,
+									]);
     }
 
     public function actionLogin()
