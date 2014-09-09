@@ -112,7 +112,6 @@ IndexAsset::register ( $this );
 				<h3>Categories</h3>
 					<ul class="thumbnails">
 					<?php 
-					$subcntr = 0;
 					foreach($categories as $cat)
 					{ 
 					?>
@@ -155,7 +154,6 @@ IndexAsset::register ( $this );
 							</div>
 						</li>
 						<?php 
-						$subcntr++;
 					 } ?>
 					</ul>
 				</div>
