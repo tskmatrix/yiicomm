@@ -33,7 +33,7 @@ use yii\widgets\ActiveForm;
 
     <?php // echo $form->field($model, 'Description') ?>
 
-    <?php // echo $form->field($model, 'ShortDescriptioon') ?>
+    <?php // echo $form->field($model, 'ShortDescription') ?>
 
     <?php // echo $form->field($model, 'HtmlDescription') ?>
 
@@ -69,7 +69,7 @@ use yii\widgets\ActiveForm;
 
     <?php // echo $form->field($model, 'PublishedOn') ?>
 
-    <?php // echo $form->field($model, 'UpdateOn') ?>
+    <?php // echo $form->field($model, 'updated_at') ?>
 
     <?php // echo $form->field($model, 'created_at') ?>
 

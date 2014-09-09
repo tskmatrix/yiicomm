@@ -90,9 +90,15 @@ IndexAsset::register ( $this );
 
 
 <p><pre>
-<?php // print_r($categories)?><br/>
-<?php // print_r($subcats)?><br/>
-<?php // print_r($featuredProducts)?><br/>
+<?php // echo 'Categories Array<br/>';
+      // print_r($categories); 
+      // echo '<br/>'; ?>
+<?php // echo 'Subcategories Array<br/>';
+      // print_r($subcats); 
+      // echo '<br/>'; ?>
+<?php // echo 'Featured Products Array<br/>';
+      // print_r($featuredProducts); 
+      // echo '<br/>';?>
 </pre></p>
 <!-- <div id="container"> -->
 	<!-- <div class="container span12"> -->
@@ -129,21 +135,17 @@ IndexAsset::register ( $this );
 									 */
 								//	$subcatsize = sizeof($subcats);
 								//	echo $subcatsize; 
-								//	foreach($subcats as $sub[])
-								//	{		
-								//		$subsize = sizeof($sub);
-										//echo $subsize . ': ';
-										
-										//echo $subcntr . ' -> '. $subsize . ', ' ;
-								//		for($i = 0; $i == 2; $i++)
-								//		 {
-								//			echo $subsize . ' -> ' . $i;
-									//		if($sub[$i]['ParentProductCategoryId'] == $cat['ProductCategoryId'])
-									//		{							
-									//			echo Html::a($sub[$i]['Name'].', ','shop/index/'.$sub[$i]['ProductCategoryId']);
-									//		}
-									//	}
-								//	}
+									foreach($subcats as $sub)
+									{		
+										$subsize = sizeof($sub);
+										for($i = 0; $i < $subsize; $i++)
+										{
+											if($sub[$i]['ParentProductCategoryId'] == $cat['ProductCategoryId'])
+											{							
+												echo Html::a($sub[$i]['Name'].', ','shop/index/'.$sub[$i]['ProductCategoryId']);
+											}
+										}
+									}
 										echo Html::a('See All','shop/index/'.$cat['ProductCategoryId'],['class'=>'see-all']); 
 										
 									 ?>
@@ -163,73 +165,25 @@ IndexAsset::register ( $this );
 				<div class="row-fluid featured-products">
 				<h3>Hot Products</h3>
 					<ul class="thumbnails">
+					<?php 
+					foreach($featuredProducts as $fp)
+					{
+					?>
 						<li class="col-md-3 item">
 							<div class="thumbnail">
-								<a href="./product.html" class="image"> <img
-									src="img/products/categories/product-2.jpg" alt=""> <span class="frame-overlay"></span>
-									<span class="price">$35</span>
-								</a>
+							<?php  echo  Html::a('<img
+									src="'. Yii::$app->request->baseUrl .'/img/products/catalog/'. $fp['productmedias'][0]['ImageUrl'] .'" alt="" /> <span class="frame-overlay"></span>
+									<span class="price">'. $fp['Price'] .'</span', 'shop/details/', ['class' => 'image']) ?>
 								<div class="inner notop nobottom">
-									<h4 class="title">Product #1</h4>
-									<p class="description">Etiam porta sem malesuada magna mollis
-										euismod. Donec sed odio dui.</p>
+									<h4 class="title"><?php  echo $fp['Name'] ?></h4>
+									<p class="description"><?php  echo $fp['HtmlDescription'] ?></p>
 								</div>
 							</div>
 							<div class="inner darken notop">
-								<a href="#" class="btn btn-add-to-cart">Add<i
-									class="fa fa-shopping-cart"></i></a>
+							<?= Html::a('Add<i class="fa fa-shopping-cart"></i>', 'shop/cart', ['class'=> 'btn btn-add-to-cart']) ?>
 							</div>
 						</li>
-						<li class="col-md-3 item">
-							<div class="thumbnail">
-								<a href="./product.html" class="image"> <img
-									src="img/products/categories/product-4.jpg" alt=""> <span class="frame-overlay"></span>
-									<span class="price">$50</span>
-								</a>
-								<div class="inner notop">
-									<h4 class="title">Product #2</h4>
-									<p class="description">Etiam porta sem malesuada magna mollis
-										euismod. Donec sed odio dui.</p>
-								</div>
-							</div>
-							<div class="inner darken notop">
-								<a href="#" class="btn btn-add-to-cart">View options</a>
-							</div>
-						</li>
-						<li class="col-md-3 item">
-							<div class="thumbnail">
-								<a href="./product.html" class="image"> <img
-									src="img/products/categories/product-6.jpg" alt=""> <span class="frame-overlay"></span>
-									<span class="price">$25</span>
-								</a>
-								<div class="inner notop">
-									<h4 class="title">Product #3</h4>
-									<p class="description">Etiam porta sem malesuada magna mollis
-										euismod. Donec sed odio dui.</p>
-								</div>
-							</div>
-							<div class="inner darken notop">
-								<a href="#" class="btn btn-add-to-cart">Add<i
-									class="fa fa-shopping-cart"></i></a>
-							</div>
-						</li>
-						<li class="col-md-3 item">
-							<div class="thumbnail">
-								<a href="./product.html" class="image"> <img
-									src="img/products/categories/product-8.jpg" alt=""> <span class="frame-overlay"></span>
-									<span class="price">$80</span>
-								</a>
-								<div class="inner notop">
-									<h4 class="title">Product #4</h4>
-									<p class="description">Etiam porta sem malesuada magna mollis
-										euismod. Donec sed odio dui.</p>
-								</div>
-							</div>
-							<div class="inner darken notop">
-								<a href="#" class="btn btn-add-to-cart">Add<i
-									class="fa fa-shopping-cart"></i></a>
-							</div>
-						</li>
+					<?php } ?>	
 					</ul>
 				</div>
 				<!-- end: Featured products -->

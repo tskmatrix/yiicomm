@@ -78,7 +78,7 @@ class SiteController extends Controller
     		array_push($subcats, $sub);
     	}
     	
-    	$featuredProducts = Products::find()->with('productmedias')->asArray()->where('IsFeatured = 1')->all();
+    	$featuredProducts = Products::find()->with('productmedias')->where('IsFeatured = 1')->asArray()->all();
     	
         return $this->render('index',['categories'=>$categories,
         							  'subcats' => $subcats,
