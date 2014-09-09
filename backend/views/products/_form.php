@@ -28,7 +28,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'Description')->textarea(['rows' => 6]) ?>
 
-    <?= $form->field($model, 'ShortDescriptioon')->textInput(['maxlength' => 2000]) ?>
+    <?= $form->field($model, 'ShortDescription')->textInput(['maxlength' => 2000]) ?>
 
     <?= $form->field($model, 'HtmlDescription')->textInput(['maxlength' => 150]) ?>
 
@@ -64,7 +64,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'PublishedOn')->textInput() ?>
 
-    <?= $form->field($model, 'UpdateOn')->textInput() ?>
+    <?= $form->field($model, 'updated_at')->textInput() ?>
 
     <?= $form->field($model, 'created_at')->textInput() ?>
 

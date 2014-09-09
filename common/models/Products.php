@@ -3,7 +3,6 @@
 namespace common\models;
 
 use Yii;
-use common\models\YiicommActiveRecord;
 
 /**
  * This is the model class for table "products".
@@ -17,7 +16,7 @@ use common\models\YiicommActiveRecord;
  * @property string $Name
  * @property string $SupplierDescription
  * @property string $Description
- * @property string $ShortDescriptioon
+ * @property string $ShortDescription
  * @property string $HtmlDescription
  * @property string $UrlName
  * @property integer $DiscountPercent
@@ -35,7 +34,7 @@ use common\models\YiicommActiveRecord;
  * @property integer $created_by
  * @property integer $LastUpdatedBy
  * @property integer $PublishedOn
- * @property integer $UpdateOn
+ * @property integer $updated_at
  * @property integer $created_at
  * @property integer $deleted_at
  *
@@ -45,9 +44,10 @@ use common\models\YiicommActiveRecord;
  * @property Productpricehistories[] $productpricehistories
  * @property Productcategories $productCategory
  * @property Producttypes $productType
+ * @property Productsrelated[] $productsrelateds
  * @property Productvotehistories[] $productvotehistories
  */
-class Products extends YiicommActiveRecord
+class Products extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc
@@ -63,13 +63,13 @@ class Products extends YiicommActiveRecord
     public function rules()
     {
         return [
-            [['ProductCategoryId', 'SupplierId', 'BrandId', 'ProductTypeId', 'DiscountPercent', 'CommissionPercent', 'MaximumPurchaseCount', 'VoteCount', 'created_by', 'LastUpdatedBy', 'PublishedOn', 'UpdateOn', 'created_at', 'deleted_at'], 'integer'],
+            [['ProductCategoryId', 'SupplierId', 'BrandId', 'ProductTypeId', 'DiscountPercent', 'CommissionPercent', 'MaximumPurchaseCount', 'VoteCount', 'created_by', 'LastUpdatedBy', 'PublishedOn', 'updated_at', 'created_at', 'deleted_at'], 'integer'],
             [['SupplierDescription', 'Description', 'Comment'], 'string'],
             [['TaxPercent', 'Price', 'PriceMarket', 'PriceSupplier'], 'number'],
             [['IsActive', 'IsFeatured', 'IsOnVote'], 'boolean'],
             [['Gender'], 'string', 'max' => 1],
             [['Name', 'UrlName'], 'string', 'max' => 500],
-            [['ShortDescriptioon'], 'string', 'max' => 2000],
+            [['ShortDescription'], 'string', 'max' => 2000],
             [['HtmlDescription'], 'string', 'max' => 150]
         ];
     }
@@ -89,7 +89,7 @@ class Products extends YiicommActiveRecord
             'Name' => 'Name',
             'SupplierDescription' => 'Supplier Description',
             'Description' => 'Description',
-            'ShortDescriptioon' => 'Short Descriptioon',
+            'ShortDescription' => 'Short Description',
             'HtmlDescription' => 'Html Description',
             'UrlName' => 'Url Name',
             'DiscountPercent' => 'Discount Percent',
@@ -107,7 +107,7 @@ class Products extends YiicommActiveRecord
             'created_by' => 'Created By',
             'LastUpdatedBy' => 'Last Updated By',
             'PublishedOn' => 'Published On',
-            'UpdateOn' => 'Update On',
+            'updated_at' => 'Updated At',
             'created_at' => 'Created At',
             'deleted_at' => 'Deleted At',
         ];
@@ -159,6 +159,14 @@ class Products extends YiicommActiveRecord
     public function getProductType()
     {
         return $this->hasOne(Producttypes::className(), ['ProductTypeId' => 'ProductTypeId']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getProductsrelateds()
+    {
+        return $this->hasMany(Productsrelated::className(), ['ProductId' => 'ProductId']);
     }
 
     /**

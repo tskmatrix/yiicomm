@@ -76,7 +76,6 @@ class User extends ActiveRecord implements IdentityInterface
             'class' => TimestampBehavior::className(),
             'createdAtAttribute' => 'created_at',
             'updatedAtAttribute' => 'updated_at',
-            'value' => new Expression('time()'),
             ],
             [
             'class' => BlameableBehavior::className(),

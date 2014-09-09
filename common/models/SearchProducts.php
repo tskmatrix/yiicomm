@@ -18,8 +18,8 @@ class SearchProducts extends Products
     public function rules()
     {
         return [
-            [['ProductId', 'ProductCategoryId', 'SupplierId', 'BrandId', 'ProductTypeId', 'DiscountPercent', 'CommissionPercent', 'MaximumPurchaseCount', 'VoteCount', 'created_by', 'LastUpdatedBy', 'PublishedOn', 'UpdateOn', 'created_at', 'deleted_at'], 'integer'],
-            [['Gender', 'Name', 'SupplierDescription', 'Description', 'ShortDescriptioon', 'HtmlDescription', 'UrlName', 'Comment'], 'safe'],
+            [['ProductId', 'ProductCategoryId', 'SupplierId', 'BrandId', 'ProductTypeId', 'DiscountPercent', 'CommissionPercent', 'MaximumPurchaseCount', 'VoteCount', 'created_by', 'LastUpdatedBy', 'PublishedOn', 'updated_at', 'created_at', 'deleted_at'], 'integer'],
+            [['Gender', 'Name', 'SupplierDescription', 'Description', 'ShortDescription', 'HtmlDescription', 'UrlName', 'Comment'], 'safe'],
             [['TaxPercent', 'Price', 'PriceMarket', 'PriceSupplier'], 'number'],
             [['IsActive', 'IsFeatured', 'IsOnVote'], 'boolean'],
         ];
@@ -73,7 +73,7 @@ class SearchProducts extends Products
             'created_by' => $this->created_by,
             'LastUpdatedBy' => $this->LastUpdatedBy,
             'PublishedOn' => $this->PublishedOn,
-            'UpdateOn' => $this->UpdateOn,
+            'updated_at' => $this->updated_at,
             'created_at' => $this->created_at,
             'deleted_at' => $this->deleted_at,
         ]);
@@ -82,7 +82,7 @@ class SearchProducts extends Products
             ->andFilterWhere(['like', 'Name', $this->Name])
             ->andFilterWhere(['like', 'SupplierDescription', $this->SupplierDescription])
             ->andFilterWhere(['like', 'Description', $this->Description])
-            ->andFilterWhere(['like', 'ShortDescriptioon', $this->ShortDescriptioon])
+            ->andFilterWhere(['like', 'ShortDescription', $this->ShortDescription])
             ->andFilterWhere(['like', 'HtmlDescription', $this->HtmlDescription])
             ->andFilterWhere(['like', 'UrlName', $this->UrlName])
             ->andFilterWhere(['like', 'Comment', $this->Comment]);
