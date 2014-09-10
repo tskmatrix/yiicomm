@@ -1,7 +1,7 @@
 <?php
 
 use yii\helpers\Html;
-use yii\widgets\ActiveForm;
+use yii\bootstrap\ActiveForm;
 use common\models\Suppliers;
 use common\models\Brands;
 use common\models\Producttypes;
@@ -9,24 +9,42 @@ use common\models\Productcategories;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\Products */
-/* @var $form yii\widgets\ActiveForm */
+/* @var $form yii\bootstrap\ActiveForm */
 ?>
 
 <div class="products-form">
 
-    <?php $form = ActiveForm::begin(); ?>
+    <?php $form = ActiveForm::begin(['layout' => 'horizontal']); ?>
 
-    <?= $form->field($model, 'ProductCategoryId')->dropDownList(Productcategories::find()->asArray()->all(),['ProductCategoryId' => 'Name']) ?>
+    <?= $form->field($model, 'Name', [
+    'horizontalCssClasses' => [
+        'wrapper' => 'col-sm-4',
+    ]])->textInput(['maxlength' => 500]) ?>
 
-    <?= $form->field($model, 'SupplierId')->dropDownList(Suppliers::find()->asArray()->all(), ['SupplierId' => 'Name']) ?>
+    <?= $form->field($model, 'ProductCategoryId', [
+    'horizontalCssClasses' => [
+        'wrapper' => 'col-sm-2',
+    ]])->textInput(['maxlength' => 18]) ?>
 
-    <?= $form->field($model, 'BrandId')->dropDownList(Brands::find()->asArray()->all(),['BrandId' => 'Name']) ?>
+    <?= $form->field($model, 'SupplierId', [
+    'horizontalCssClasses' => [
+        'wrapper' => 'col-sm-2',
+    ]])->textInput(['maxlength' => 18]) ?>
 
-    <?= $form->field($model, 'ProductTypeId')->dropDownList(Producttypes::find()->asArray()->all(),['ProductTypeId' => 'Name']) ?>
+    <?= $form->field($model, 'BrandId', [
+    'horizontalCssClasses' => [
+        'wrapper' => 'col-sm-2',
+    ]])->textInput(['maxlength' => 18]) ?>
 
-    <?= $form->field($model, 'Gender')->textInput(['maxlength' => 1]) ?>
+    <?= $form->field($model, 'ProductTypeId', [
+    'horizontalCssClasses' => [
+        'wrapper' => 'col-sm-2',
+    ]])->textInput(['maxlength' => 18]) ?>
 
-    <?= $form->field($model, 'Name')->textInput(['maxlength' => 500]) ?>
+    <?= $form->field($model, 'Gender', [
+    'horizontalCssClasses' => [
+        'wrapper' => 'col-sm-2',
+    ]])->dropDownList($model->getGenderOptions()) ?>
 
     <?= $form->field($model, 'SupplierDescription')->textarea(['rows' => 6]) ?>
 
@@ -36,21 +54,45 @@ use common\models\Productcategories;
 
     <?= $form->field($model, 'HtmlDescription')->textInput(['maxlength' => 150]) ?>
 
-    <?= $form->field($model, 'UrlName')->textInput(['maxlength' => 500]) ?>
+    <?= $form->field($model, 'UrlName', [
+    'horizontalCssClasses' => [
+        'wrapper' => 'col-sm-2',
+    ]])->textInput(['maxlength' => 500]) ?>
 
-    <?= $form->field($model, 'DiscountPercent')->textInput() ?>
+    <?= $form->field($model, 'DiscountPercent', [
+    'horizontalCssClasses' => [
+        'wrapper' => 'col-sm-2',
+    ]])->textInput() ?>
 
-    <?= $form->field($model, 'CommissionPercent')->textInput() ?>
+    <?= $form->field($model, 'CommissionPercent', [
+    'horizontalCssClasses' => [
+        'wrapper' => 'col-sm-2',
+    ]])->textInput() ?>
 
-    <?= $form->field($model, 'TaxPercent')->textInput(['maxlength' => 18]) ?>
+    <?= $form->field($model, 'TaxPercent', [
+    'horizontalCssClasses' => [
+        'wrapper' => 'col-sm-2',
+    ]])->textInput(['maxlength' => 18]) ?>
 
-    <?= $form->field($model, 'Price')->textInput(['maxlength' => 18]) ?>
+    <?= $form->field($model, 'Price', [
+    'horizontalCssClasses' => [
+        'wrapper' => 'col-sm-2',
+    ]])->textInput(['maxlength' => 18]) ?>
 
-    <?= $form->field($model, 'PriceMarket')->textInput(['maxlength' => 18]) ?>
+    <?= $form->field($model, 'PriceMarket', [
+    'horizontalCssClasses' => [
+        'wrapper' => 'col-sm-2',
+    ]])->textInput(['maxlength' => 18]) ?>
 
-    <?= $form->field($model, 'PriceSupplier')->textInput(['maxlength' => 18]) ?>
+    <?= $form->field($model, 'PriceSupplier', [
+    'horizontalCssClasses' => [
+        'wrapper' => 'col-sm-2',
+    ]])->textInput(['maxlength' => 18]) ?>
 
-    <?= $form->field($model, 'MaximumPurchaseCount')->textInput() ?>
+    <?= $form->field($model, 'MaximumPurchaseCount', [
+    'horizontalCssClasses' => [
+        'wrapper' => 'col-sm-2',
+    ]])->textInput() ?>
 
     <?= $form->field($model, 'IsActive')->checkbox() ?>
 
@@ -62,17 +104,7 @@ use common\models\Productcategories;
 
     <?= $form->field($model, 'Comment')->textarea(['rows' => 6]) ?>
 
-    <?= $form->field($model, 'created_by')->textInput() ?>
-
-    <?= $form->field($model, 'LastUpdatedBy')->textInput() ?>
-
-    <?= $form->field($model, 'PublishedOn')->textInput() ?>
-
-    <?= $form->field($model, 'updated_at')->textInput() ?>
-
-    <?= $form->field($model, 'created_at')->textInput() ?>
-
-    <?= $form->field($model, 'deleted_at')->textInput() ?>
+    <?php // echo $form->field($model, 'PublishedOn')->textInput() ?>
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>

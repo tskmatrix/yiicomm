@@ -2,6 +2,8 @@
 /* @var $this yii\web\View */
 use yii\helpers\Html;
 use frontend\assets\IndexAsset;
+use yii\data\Pagination;
+use yii\widgets\LinkPager;
 
 $this->title = 'Yiicomm - Shop';
 
@@ -18,9 +20,9 @@ $this->params['breadcrumbs'][] = $this->title;
 </p>
 
 
-<!-- start: Container -->
+<!-- start: Container
 <div id="container">
-    <div class="container">
+    <div class="container"> -->
         <div class="row-fluid">
 
         <!-- start: Page section -->
@@ -40,7 +42,14 @@ $this->params['breadcrumbs'][] = $this->title;
             <div class="row-fluid shop-result">
                 <div class="inner darken clearfix">
                     <div class="col-md-6 result-count">
-                        I found <?= $countProducts ?> products in this category
+                        I found <?= $countProducts ?> products. 
+                        <?= 
+		             	// display pagination
+		             	LinkPager::widget([
+             			'pagination' => $pages,
+						'options' => ['class'=>'pagination pagination-right'],
+             			]);
+             			?>
                     </div>
                     <!-- <div class="col-md-6 result-ordering">
                         <div class="pull-right">
@@ -86,25 +95,21 @@ $this->params['breadcrumbs'][] = $this->title;
                         </div>
                     </li>
                     <?php 
-                    $rowCntr++;
-                    } ?>
+	                    if($rowCntr <= 2 ) {
+							$rowCntr++;
+	                    } else{ 
+							$rowCntr = 1; 
+						}
+                    } // end the foreach
+					 ?>
                 </ul>
             </div>
             <!-- end: products listing -->
 
             <!-- start: Pagination -->
-            <!-- <div class="pagination pagination-right">
-                <ul>
-                    <li class="index">Page 1 of 5</li>
-                    <li class="disabled"><a href="#"><i class="icon-double-angle-left"></i></a></li>
-                    <li class="active"><a href="#">1</a></li>
-                    <li><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li><a href="#">4</a></li>
-                    <li><a href="#">5</a></li>
-                    <li><a href="#"><i class="icon-double-angle-right"></i></a></li>
-                </ul>
-            </div> -->
+             <div class="pagination pagination-right">
+             	
+            </div> 
             <!-- end: Pagination -->
 
         </section>
@@ -232,9 +237,9 @@ $this->params['breadcrumbs'][] = $this->title;
         <!-- end: Sidebar -->
         </div>
 
-    </div>
+<!--     </div>
 </div>
-<!-- end: Container -->
+end: Container -->
 
 
 

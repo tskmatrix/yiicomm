@@ -4,7 +4,7 @@ use yii\helpers\Html;
 use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\Productsrelated */
+/* @var $model common\models\Productsrelated */
 
 $this->title = $model->ProductsRelatedId;
 $this->params['breadcrumbs'][] = ['label' => 'Productsrelateds', 'url' => ['index']];

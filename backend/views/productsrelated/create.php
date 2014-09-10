@@ -4,7 +4,7 @@ use yii\helpers\Html;
 
 
 /* @var $this yii\web\View */
-/* @var $model app\models\Productsrelated */
+/* @var $model common\models\Productsrelated */
 
 $this->title = 'Create Productsrelated';
 $this->params['breadcrumbs'][] = ['label' => 'Productsrelateds', 'url' => ['index']];
