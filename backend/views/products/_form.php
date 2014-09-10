@@ -2,6 +2,10 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use common\models\Suppliers;
+use common\models\Brands;
+use common\models\Producttypes;
+use common\models\Productcategories;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\Products */
@@ -12,13 +16,13 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'ProductCategoryId')->textInput() ?>
+    <?= $form->field($model, 'ProductCategoryId')->dropDownList(Productcategories::find()->asArray()->all(),['ProductCategoryId' => 'Name']) ?>
 
-    <?= $form->field($model, 'SupplierId')->textInput() ?>
+    <?= $form->field($model, 'SupplierId')->dropDownList(Suppliers::find()->asArray()->all(), ['SupplierId' => 'Name']) ?>
 
-    <?= $form->field($model, 'BrandId')->textInput() ?>
+    <?= $form->field($model, 'BrandId')->dropDownList(Brands::find()->asArray()->all(),['BrandId' => 'Name']) ?>
 
-    <?= $form->field($model, 'ProductTypeId')->textInput() ?>
+    <?= $form->field($model, 'ProductTypeId')->dropDownList(Producttypes::find()->asArray()->all(),['ProductTypeId' => 'Name']) ?>
 
     <?= $form->field($model, 'Gender')->textInput(['maxlength' => 1]) ?>
 

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 04, 2014 at 02:02 AM
+-- Generation Time: Sep 09, 2014 at 02:09 PM
 -- Server version: 5.6.16
 -- PHP Version: 5.5.11
 
@@ -62,14 +62,6 @@ CREATE TABLE IF NOT EXISTS `addresses` (
   KEY `FK_Addresses_AddressTypes` (`AddressTypeId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- RELATIONS FOR TABLE `addresses`:
---   `UserId`
---       `user` -> `id`
---   `AddressTypeId`
---       `addresstypes` -> `AddressTypeId`
---
-
 -- --------------------------------------------------------
 
 --
@@ -112,12 +104,6 @@ CREATE TABLE IF NOT EXISTS `affiliates` (
   KEY `FK_Affilates_Customers` (`CustomerId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- RELATIONS FOR TABLE `affiliates`:
---   `CustomerId`
---       `customers` -> `CustomerId`
---
-
 -- --------------------------------------------------------
 
 --
@@ -131,12 +117,6 @@ CREATE TABLE IF NOT EXISTS `auth_assignment` (
   `created_at` int(11) DEFAULT NULL,
   PRIMARY KEY (`item_name`,`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- RELATIONS FOR TABLE `auth_assignment`:
---   `item_name`
---       `auth_item` -> `name`
---
 
 --
 -- Dumping data for table `auth_assignment`
@@ -166,12 +146,6 @@ CREATE TABLE IF NOT EXISTS `auth_item` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- RELATIONS FOR TABLE `auth_item`:
---   `rule_name`
---       `auth_rule` -> `name`
---
-
---
 -- Dumping data for table `auth_item`
 --
 
@@ -195,14 +169,6 @@ CREATE TABLE IF NOT EXISTS `auth_item_child` (
   PRIMARY KEY (`parent`,`child`),
   KEY `child` (`child`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- RELATIONS FOR TABLE `auth_item_child`:
---   `parent`
---       `auth_item` -> `name`
---   `child`
---       `auth_item` -> `name`
---
 
 --
 -- Dumping data for table `auth_item_child`
@@ -298,12 +264,6 @@ CREATE TABLE IF NOT EXISTS `campaignproducts` (
   KEY `FK_CampaignProducts_Campaigns` (`CampaignId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- RELATIONS FOR TABLE `campaignproducts`:
---   `CampaignId`
---       `campaigns` -> `CampaignId`
---
-
 -- --------------------------------------------------------
 
 --
@@ -336,12 +296,6 @@ CREATE TABLE IF NOT EXISTS `campaigns` (
   PRIMARY KEY (`CampaignId`),
   KEY `FK_Campaigns_CampaignTypes` (`CampaignTypeId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- RELATIONS FOR TABLE `campaigns`:
---   `CampaignTypeId`
---       `campaigntypes` -> `CampaignTypeId`
---
 
 -- --------------------------------------------------------
 
@@ -384,12 +338,6 @@ CREATE TABLE IF NOT EXISTS `cities` (
   KEY `FK_Cities_GeoZones` (`GeoZoneId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- RELATIONS FOR TABLE `cities`:
---   `GeoZoneId`
---       `geozones` -> `GeoZoneId`
---
-
 -- --------------------------------------------------------
 
 --
@@ -409,12 +357,6 @@ CREATE TABLE IF NOT EXISTS `counties` (
   PRIMARY KEY (`CountyId`),
   KEY `FK_Counties_Cities` (`CityId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- RELATIONS FOR TABLE `counties`:
---   `CityId`
---       `cities` -> `CityId`
---
 
 -- --------------------------------------------------------
 
@@ -458,14 +400,6 @@ CREATE TABLE IF NOT EXISTS `creditcards` (
   KEY `FK_CreditCards_Banks` (`BankId`),
   KEY `FK_CreditCards_CreditCardTypes` (`CreditCardTypeId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- RELATIONS FOR TABLE `creditcards`:
---   `BankId`
---       `banks` -> `BankId`
---   `CreditCardTypeId`
---       `creditcardtypes` -> `CreditCardTypeId`
---
 
 -- --------------------------------------------------------
 
@@ -566,12 +500,6 @@ CREATE TABLE IF NOT EXISTS `geozones` (
   KEY `FK_GeoZones_Countries` (`CountryId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- RELATIONS FOR TABLE `geozones`:
---   `CountryId`
---       `countries` -> `CountryId`
---
-
 -- --------------------------------------------------------
 
 --
@@ -596,14 +524,6 @@ CREATE TABLE IF NOT EXISTS `giftcardhistories` (
   KEY `FK_GiftCardHistories_Customers` (`CustomerID`),
   KEY `FK_GiftCardHistories_GiftCards` (`GiftCardID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- RELATIONS FOR TABLE `giftcardhistories`:
---   `CustomerID`
---       `customers` -> `CustomerId`
---   `GiftCardID`
---       `giftcards` -> `GiftCardId`
---
 
 -- --------------------------------------------------------
 
@@ -643,12 +563,6 @@ CREATE TABLE IF NOT EXISTS `giftcards` (
   PRIMARY KEY (`GiftCardId`),
   KEY `FK_GiftCards_GiftCardTypes` (`GiftCardTypeId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- RELATIONS FOR TABLE `giftcards`:
---   `GiftCardTypeId`
---       `giftcardtypes` -> `GiftCardTypeId`
---
 
 -- --------------------------------------------------------
 
@@ -717,14 +631,6 @@ CREATE TABLE IF NOT EXISTS `logs` (
   KEY `FK_Logs_User` (`UserId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- RELATIONS FOR TABLE `logs`:
---   `LogEventId`
---       `logevents` -> `LogEventId`
---   `UserId`
---       `user` -> `id`
---
-
 -- --------------------------------------------------------
 
 --
@@ -771,12 +677,6 @@ CREATE TABLE IF NOT EXISTS `orderdetails` (
   KEY `FK_OrderDetails_Orders` (`OrderId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- RELATIONS FOR TABLE `orderdetails`:
---   `OrderId`
---       `orders` -> `OrderId`
---
-
 -- --------------------------------------------------------
 
 --
@@ -809,14 +709,6 @@ CREATE TABLE IF NOT EXISTS `orders` (
   KEY `FK_Orders_OrderStatuses` (`OrderStatusId`),
   KEY `FK_Orders_Payments` (`PaymentId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- RELATIONS FOR TABLE `orders`:
---   `OrderStatusId`
---       `orderstatuses` -> `OrderStatusId`
---   `PaymentId`
---       `paymenttransactions` -> `PaymentId`
---
 
 -- --------------------------------------------------------
 
@@ -899,16 +791,6 @@ CREATE TABLE IF NOT EXISTS `paymenttransactions` (
   KEY `FK_PaymentTransactions_Currencies` (`CurrencyCode`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- RELATIONS FOR TABLE `paymenttransactions`:
---   `CreditCardId`
---       `creditcards` -> `CreditCardId`
---   `PaymentTypeId`
---       `paymenttypes` -> `PaymentTypeId`
---   `CurrencyCode`
---       `currencies` -> `CurrencyCode`
---
-
 -- --------------------------------------------------------
 
 --
@@ -951,12 +833,6 @@ CREATE TABLE IF NOT EXISTS `phones` (
   KEY `FK_Phones_User` (`UserId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- RELATIONS FOR TABLE `phones`:
---   `UserId`
---       `user` -> `id`
---
-
 -- --------------------------------------------------------
 
 --
@@ -980,7 +856,20 @@ CREATE TABLE IF NOT EXISTS `productcategories` (
   `updated_at` int(11) DEFAULT NULL,
   `deleted_at` int(11) DEFAULT NULL,
   PRIMARY KEY (`ProductCategoryId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `productcategories`
+--
+
+INSERT INTO `productcategories` (`ProductCategoryId`, `ParentProductCategoryId`, `Name`, `Description`, `ShortDescription`, `HtmlDecription`, `AvatarUrl`, `IconUrl`, `Comment`, `created_by`, `LastUpdatedBy`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 0, 'Photography', '', '', '', '', 'product-1.jpg', '', 1, 1, 1410198595, 1410199987, NULL),
+(2, 0, 'Camcorders', '', '', '', '', 'product-3.jpg', '', 1, 1, 1410198655, 1410200024, NULL),
+(3, 0, 'Professional', '', '', '', '', 'product-5.jpg', '', 1, 1, 1410198690, 1410200062, NULL),
+(4, 0, 'Accessories', '', '', '', '', 'product-7.jpg', '', 1, 1, 1410198719, 1410200093, NULL),
+(5, 1, 'Digital Cameras', '', '', '', '', '', '', 1, 1, 1410198774, 1410198774, NULL),
+(6, 1, 'Lenses', '', '', '', '', '', '', 1, 1, 1410198803, 1410198803, NULL),
+(7, 1, 'Printers & Scanners', '', '', '', '', '', '', 1, 1, 1410198839, 1410198839, NULL);
 
 -- --------------------------------------------------------
 
@@ -1011,13 +900,18 @@ CREATE TABLE IF NOT EXISTS `productmedias` (
   `deleted_at` int(11) DEFAULT NULL,
   PRIMARY KEY (`ProductMediaId`),
   KEY `FK_ProductMedias_Products` (`ProductId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
 --
--- RELATIONS FOR TABLE `productmedias`:
---   `ProductId`
---       `products` -> `ProductId`
+-- Dumping data for table `productmedias`
 --
+
+INSERT INTO `productmedias` (`ProductMediaId`, `ProductId`, `SmallImageUrl`, `ImageUrl`, `ZoomImageUrl`, `EmbedCode`, `HtmlAlt`, `HtmlTitle`, `FeaturedText`, `DisplayOrder`, `IsVideo`, `IsPrimary`, `IsActive`, `Comment`, `created_by`, `LastUpdatedBy`, `updated_at`, `created_at`, `deleted_at`) VALUES
+(1, 1, 'photography/product-1.jpg', 'photography/product-1.jpg', 'photography/product-1.jpg', '', '', '', '', NULL, b'0', b'0', b'1', '', 1, 1, 1410255871, 1410255871, NULL),
+(2, 2, 'photography/product-3.jpg', 'photography/product-3.jpg', 'photography/product-3.jpg', '', '', '', '', NULL, b'0', b'0', b'1', '', 1, 1, 1410255914, 1410255914, NULL),
+(3, 3, 'photography/product-4.jpg', 'photography/product-4.jpg', 'photography/product-4.jpg', '', '', '', '', NULL, b'0', b'0', b'1', '', 1, 1, 1410255951, 1410255951, NULL),
+(4, 4, 'camcorders/product-5.jpg', 'camcorders/product-5.jpg', 'camcorders/product-5.jpg', '', '', '', '', NULL, b'0', b'0', b'1', '', 1, 1, 1410256099, 1410256099, NULL),
+(5, 5, 'camcorders/product-8.jpg', 'camcorders/product-8.jpg', 'camcorders/product-8.jpg', '', '', '', '', NULL, b'0', b'0', b'1', '', 1, 1, 1410256298, 1410256298, NULL);
 
 -- --------------------------------------------------------
 
@@ -1073,12 +967,6 @@ CREATE TABLE IF NOT EXISTS `productoptiongroupmembers` (
   KEY `FK_ProductOptionGroupMembers_ProductOptionGroups` (`ProductOptionGroupId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- RELATIONS FOR TABLE `productoptiongroupmembers`:
---   `ProductOptionGroupId`
---       `productoptiongroups` -> `ProductOptionGroupId`
---
-
 -- --------------------------------------------------------
 
 --
@@ -1128,20 +1016,6 @@ CREATE TABLE IF NOT EXISTS `productoptionprices` (
   KEY `FK_ProductOptionPrices_ProductOptionGroupMembers` (`ProductOptionGroupMemberId1`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- RELATIONS FOR TABLE `productoptionprices`:
---   `ProductOptionGroupMemberId4`
---       `productoptiongroupmembers` -> `ProductOptionGroupMemberId`
---   `ProductId`
---       `products` -> `ProductId`
---   `ProductOptionGroupMemberId1`
---       `productoptiongroupmembers` -> `ProductOptionGroupMemberId`
---   `ProductOptionGroupMemberId3`
---       `productoptiongroupmembers` -> `ProductOptionGroupMemberId`
---   `ProductOptionGroupMemberId2`
---       `productoptiongroupmembers` -> `ProductOptionGroupMemberId`
---
-
 -- --------------------------------------------------------
 
 --
@@ -1165,14 +1039,6 @@ CREATE TABLE IF NOT EXISTS `productoptions` (
   KEY `FK_ProductOptions_Products` (`ProductId`),
   KEY `FK_ProductOptions_ProductOptionGroupMembers` (`ProductOptionGroupMemberId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- RELATIONS FOR TABLE `productoptions`:
---   `ProductOptionGroupMemberId`
---       `productoptiongroupmembers` -> `ProductOptionGroupMemberId`
---   `ProductId`
---       `products` -> `ProductId`
---
 
 -- --------------------------------------------------------
 
@@ -1199,14 +1065,6 @@ CREATE TABLE IF NOT EXISTS `productpricehistories` (
   KEY `FK_ProductPriceHistories_ProductOptionPrices` (`ProductOptionPriceId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- RELATIONS FOR TABLE `productpricehistories`:
---   `ProductOptionPriceId`
---       `productoptionprices` -> `ProductOptionPriceId`
---   `ProductId`
---       `products` -> `ProductId`
---
-
 -- --------------------------------------------------------
 
 --
@@ -1224,7 +1082,7 @@ CREATE TABLE IF NOT EXISTS `products` (
   `Name` varchar(500) DEFAULT NULL,
   `SupplierDescription` mediumtext,
   `Description` mediumtext,
-  `ShortDescriptioon` varchar(2000) DEFAULT NULL,
+  `ShortDescription` varchar(2000) DEFAULT NULL,
   `HtmlDescription` varchar(150) DEFAULT NULL,
   `UrlName` varchar(500) DEFAULT NULL,
   `DiscountPercent` int(11) DEFAULT NULL,
@@ -1242,21 +1100,46 @@ CREATE TABLE IF NOT EXISTS `products` (
   `created_by` int(11) DEFAULT NULL,
   `LastUpdatedBy` int(11) DEFAULT NULL,
   `PublishedOn` int(11) DEFAULT NULL,
-  `UpdateOn` int(11) DEFAULT NULL,
+  `updated_at` int(11) DEFAULT NULL,
   `created_at` int(11) DEFAULT NULL,
   `deleted_at` int(11) DEFAULT NULL,
   PRIMARY KEY (`ProductId`),
   KEY `FK_Products_ProductTypes` (`ProductTypeId`),
   KEY `FK_Products_ProductCategories` (`ProductCategoryId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
 --
--- RELATIONS FOR TABLE `products`:
---   `ProductCategoryId`
---       `productcategories` -> `ProductCategoryId`
---   `ProductTypeId`
---       `producttypes` -> `ProductTypeId`
+-- Dumping data for table `products`
 --
+
+INSERT INTO `products` (`ProductId`, `ProductCategoryId`, `SupplierId`, `BrandId`, `ProductTypeId`, `Gender`, `Name`, `SupplierDescription`, `Description`, `ShortDescription`, `HtmlDescription`, `UrlName`, `DiscountPercent`, `CommissionPercent`, `TaxPercent`, `Price`, `PriceMarket`, `PriceSupplier`, `MaximumPurchaseCount`, `IsActive`, `IsFeatured`, `IsOnVote`, `VoteCount`, `Comment`, `created_by`, `LastUpdatedBy`, `PublishedOn`, `updated_at`, `created_at`, `deleted_at`) VALUES
+(1, 1, NULL, NULL, NULL, '', 'Product #1', '', '', '', 'Digital camera', '', NULL, NULL, NULL, '129.00', NULL, '57.60', NULL, b'1', b'1', b'0', NULL, '', NULL, NULL, NULL, NULL, NULL, NULL),
+(2, 1, NULL, NULL, NULL, 'a', 'Product #3', '', '', '', 'Digital SLR', '', NULL, NULL, NULL, '399.99', '389.99', '239.99', NULL, b'1', b'0', b'0', NULL, '', NULL, NULL, NULL, NULL, NULL, NULL),
+(3, 1, NULL, NULL, NULL, 'a', 'Product #4', '', '', '', 'Digital Camera', '', NULL, NULL, NULL, '349.99', NULL, '179.99', NULL, b'1', b'1', b'0', NULL, '', NULL, NULL, NULL, NULL, NULL, NULL),
+(4, 2, NULL, NULL, NULL, 'a', 'Product #5', '', '', '', 'Digital HD ', '', NULL, NULL, NULL, '499.99', NULL, '399.99', NULL, b'1', b'1', b'0', NULL, '', NULL, NULL, NULL, NULL, NULL, NULL),
+(5, 2, NULL, NULL, NULL, 'a', 'Product #8', '', '', '', 'Digital HD SLR', '', NULL, NULL, NULL, '599.99', NULL, '449.99', NULL, b'1', b'1', b'0', NULL, '', NULL, NULL, NULL, NULL, NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `productsrelated`
+--
+
+DROP TABLE IF EXISTS `productsrelated`;
+CREATE TABLE IF NOT EXISTS `productsrelated` (
+  `ProductsRelatedId` int(11) NOT NULL AUTO_INCREMENT,
+  `ProductId` int(11) NOT NULL,
+  `RelatedProductId1` int(11) DEFAULT NULL,
+  `RelatedProductId2` int(11) DEFAULT NULL,
+  `RelatedProductId3` int(11) DEFAULT NULL,
+  `created_by` int(11) NOT NULL,
+  `LastUpdatedBy` int(11) NOT NULL,
+  `created_at` int(11) NOT NULL,
+  `updated_at` int(11) NOT NULL,
+  `deleted_at` int(11) DEFAULT NULL,
+  PRIMARY KEY (`ProductsRelatedId`),
+  KEY `ProductId` (`ProductId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -1300,12 +1183,6 @@ CREATE TABLE IF NOT EXISTS `productvotehistories` (
   PRIMARY KEY (`ProductVoteHistoryId`),
   KEY `FK_ProductVoteHistories_Products` (`ProductId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- RELATIONS FOR TABLE `productvotehistories`:
---   `ProductId`
---       `products` -> `ProductId`
---
 
 -- --------------------------------------------------------
 
@@ -1396,16 +1273,6 @@ CREATE TABLE IF NOT EXISTS `shippings` (
   KEY `FK_Shippings_ShippingStatuses` (`ShippingStatusId`),
   KEY `FK_Shippings_Orders` (`OrderId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- RELATIONS FOR TABLE `shippings`:
---   `OrderId`
---       `orders` -> `OrderId`
---   `ShippingStatusId`
---       `shippingstatuses` -> `ShippingStatusId`
---   `ShippingTypeId`
---       `shippingtypes` -> `ShippingTypeId`
---
 
 -- --------------------------------------------------------
 
@@ -1518,14 +1385,6 @@ CREATE TABLE IF NOT EXISTS `suppliersbrands` (
   KEY `FK_SuppliersBrands_Brands` (`BrandId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- RELATIONS FOR TABLE `suppliersbrands`:
---   `SupplierId`
---       `suppliers` -> `SupplierId`
---   `BrandId`
---       `brands` -> `BrandId`
---
-
 -- --------------------------------------------------------
 
 --
@@ -1548,12 +1407,6 @@ CREATE TABLE IF NOT EXISTS `supplierspeople` (
   PRIMARY KEY (`SuppliersPeopleId`),
   KEY `FK_SuppliersPeople_Suppliers` (`SupplierId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- RELATIONS FOR TABLE `supplierspeople`:
---   `SupplierId`
---       `suppliers` -> `SupplierId`
---
 
 -- --------------------------------------------------------
 
@@ -1599,14 +1452,9 @@ CREATE TABLE IF NOT EXISTS `user` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
 --
--- RELATIONS FOR TABLE `user`:
---   `UserTypeId`
---       `usertypes` -> `UserTypeId`
+-- Dumping data for table `user`
 --
 
---
--- NOTICE remember to signup so you can log in as the superuser/admin
---
 
 -- --------------------------------------------------------
 
@@ -1629,12 +1477,6 @@ CREATE TABLE IF NOT EXISTS `userrestdata` (
   PRIMARY KEY (`UserDetailId`),
   KEY `FK_UserRestData_Users` (`UserId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- RELATIONS FOR TABLE `userrestdata`:
---   `UserId`
---       `user` -> `id`
---
 
 -- --------------------------------------------------------
 
@@ -1686,8 +1528,8 @@ CREATE TABLE IF NOT EXISTS `warehouses` (
 -- Constraints for table `addresses`
 --
 ALTER TABLE `addresses`
-  ADD CONSTRAINT `FK_Addresses_User` FOREIGN KEY (`UserId`) REFERENCES `user` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `FK_Addresses_AddressTypes` FOREIGN KEY (`AddressTypeId`) REFERENCES `addresstypes` (`AddressTypeId`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `FK_Addresses_AddressTypes` FOREIGN KEY (`AddressTypeId`) REFERENCES `addresstypes` (`AddressTypeId`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `FK_Addresses_User` FOREIGN KEY (`UserId`) REFERENCES `user` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Constraints for table `affiliates`
@@ -1814,11 +1656,11 @@ ALTER TABLE `productoptiongroupmembers`
 -- Constraints for table `productoptionprices`
 --
 ALTER TABLE `productoptionprices`
-  ADD CONSTRAINT `FK_ProductOptionPrices_ProductOptionGroupMembers3` FOREIGN KEY (`ProductOptionGroupMemberId4`) REFERENCES `productoptiongroupmembers` (`ProductOptionGroupMemberId`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `FK_ProductOptionPrices_Products` FOREIGN KEY (`ProductId`) REFERENCES `products` (`ProductId`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `FK_ProductOptionPrices_ProductOptionGroupMembers` FOREIGN KEY (`ProductOptionGroupMemberId1`) REFERENCES `productoptiongroupmembers` (`ProductOptionGroupMemberId`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `FK_ProductOptionPrices_ProductOptionGroupMembers1` FOREIGN KEY (`ProductOptionGroupMemberId3`) REFERENCES `productoptiongroupmembers` (`ProductOptionGroupMemberId`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `FK_ProductOptionPrices_ProductOptionGroupMembers2` FOREIGN KEY (`ProductOptionGroupMemberId2`) REFERENCES `productoptiongroupmembers` (`ProductOptionGroupMemberId`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `FK_ProductOptionPrices_ProductOptionGroupMembers2` FOREIGN KEY (`ProductOptionGroupMemberId2`) REFERENCES `productoptiongroupmembers` (`ProductOptionGroupMemberId`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `FK_ProductOptionPrices_ProductOptionGroupMembers3` FOREIGN KEY (`ProductOptionGroupMemberId4`) REFERENCES `productoptiongroupmembers` (`ProductOptionGroupMemberId`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `FK_ProductOptionPrices_Products` FOREIGN KEY (`ProductId`) REFERENCES `products` (`ProductId`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Constraints for table `productoptions`
@@ -1842,6 +1684,13 @@ ALTER TABLE `products`
   ADD CONSTRAINT `FK_Products_ProductTypes` FOREIGN KEY (`ProductTypeId`) REFERENCES `producttypes` (`ProductTypeId`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
+-- Constraints for table `productsrelated`
+--
+ALTER TABLE `productsrelated`
+  ADD CONSTRAINT `FK_ProductsRelated_Products` FOREIGN KEY (`ProductId`) REFERENCES `products` (`ProductId`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `productsrelated_ibfk_1` FOREIGN KEY (`ProductId`) REFERENCES `products` (`ProductId`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
 -- Constraints for table `productvotehistories`
 --
 ALTER TABLE `productvotehistories`
@@ -1859,8 +1708,8 @@ ALTER TABLE `shippings`
 -- Constraints for table `suppliersbrands`
 --
 ALTER TABLE `suppliersbrands`
-  ADD CONSTRAINT `FK_SuppliersBrands_Suppliers` FOREIGN KEY (`SupplierId`) REFERENCES `suppliers` (`SupplierId`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `FK_SuppliersBrands_Brands` FOREIGN KEY (`BrandId`) REFERENCES `brands` (`BrandId`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `FK_SuppliersBrands_Brands` FOREIGN KEY (`BrandId`) REFERENCES `brands` (`BrandId`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `FK_SuppliersBrands_Suppliers` FOREIGN KEY (`SupplierId`) REFERENCES `suppliers` (`SupplierId`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Constraints for table `supplierspeople`
@@ -1879,7 +1728,6 @@ ALTER TABLE `user`
 --
 ALTER TABLE `userrestdata`
   ADD CONSTRAINT `FK_UserRestData_Users` FOREIGN KEY (`UserId`) REFERENCES `user` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-  
 SET FOREIGN_KEY_CHECKS=1;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

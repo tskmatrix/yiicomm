@@ -3,6 +3,7 @@
 namespace common\models;
 
 use Yii;
+use common\models\YiicommActiveRecord;
 
 /**
  * This is the model class for table "addresstypes".
@@ -19,7 +20,7 @@ use Yii;
  *
  * @property Addresses[] $addresses
  */
-class Addresstypes extends \yii\db\ActiveRecord
+class Addresstypes extends YiicommActiveRecord
 {
     /**
      * @inheritdoc

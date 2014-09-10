@@ -40,6 +40,12 @@ AppAsset::register($this);
                 ]
             ],
             [
+                'label' => 'Shop',
+                'url' => [
+                    '/shop/index'
+                ]
+        	],
+            [
                 'label' => 'About',
                 'url' => [
                     '/site/about'
@@ -133,12 +139,92 @@ AppAsset::register($this);
         </div>
 	</div>
 
-	<footer class="footer">
-		<div class="container">
-			<p class="pull-left">&copy; TSKmatrix <?= date('Y') ?></p>
+<!-- start: Footer -->
+<footer id="footer">
+    <div class="container">
+        <div class="row-fluid">
+            <div class="col-md-3 clearfix">
+                <h3 class="widget-title">About Us</h3>
+                <div class="widget-inner">
+                    <p>Curabitur turpis elit, imperdiet a lacinia consequat, posuere in nisi. Etiam sed egestas lacus. Maecenas nec massa quis metus sollicitudin pellentesque in eget purus. </p>
+					<address>
+						<ul class="unstyled">
+							<li>Contact Info</li>
+							<li>Street Name 432/2, London, 90210</li>
+							<li>(123) 456-7890</li>
+							<li>(123) 456-7890</li>
+							<li><a href="mailto:#">info@email.com</a></li>
+						</ul>
+					</address>
+					<ul class="social clearfix">
+						<li>
+							<a class="facebook" href="#"></a>
+						</li>
+						<li>
+							<a class="twitter2" href="#"></a>
+						</li>
+						<li>
+							<a class="google-plus" href="#"></a>
+						</li>
+					</ul>				
+                </div>
+            </div>
+            <div class="col-md-3 clearfix">
+                <h3 class="widget-title">Shipping Info</h3>
+                <div class="widget-inner">
+                    <ul class="unstyled">
+                        <li><a href="#">New products</a></li>
+                        <li><a href="#">Top sellers</a></li>
+                        <li><a href="#">Specials</a></li>
+                        <!-- <li><a href="#">Manufacturers</a></li>
+                        <li><a href="#">Suppliers</a></li> -->
+                        <li><a href="#">Customer Service</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-md-3 clearfix">
+                <h3 class="widget-title">Latest Tweets</h3>
+                <!-- start: Twitter Widget -->
+                <div class="widget-inner">
+                    <div id="twitter-foot"></div>
+                </div>
+                <!-- end: Twitter Widget -->
+            </div>
+
+            <div class="col-md-3 clearfix">
+                <!-- start: Flickr Widget -->
+                <!-- <section class="widget inner">
+                    <h3 class="widget-title">Flickr</h3>
+                    <ul class="flickr clearfix"></ul>
+                </section> -->
+                <!-- end: Flickr Widget -->
+            </div>			
+        </div>
+    </div>
+</footer>
+<!-- end: Footer -->
+
+<!-- start: Footer menu -->
+<section id="footer-menu">
+    <div class="container">
+        <div class="row-fluid">
+            <div class="col-md-6">
+               <p class="pull-left">&copy; TSKmatrix <?= date('Y') ?></p>
 			<p class="pull-right"><?= Yii::powered() ?></p>
-		</div>
-	</footer>
+            </div>
+            <div class="col-md-6 payment">
+                <img src="img/cards/visa_straight.png" alt=""/>
+                <img src="img/cards/paypal.png" alt=""/>
+                <img src="img/cards/discover.png" alt=""/>
+                <img src="img/cards/aex.png" alt=""/>
+                <img src="img/cards/maestro.png" alt=""/>
+                <img src="img/cards/mastercard.png" alt=""/>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- end: Footer menu -->
 
     <?php $this->endBody()?>
 </body>

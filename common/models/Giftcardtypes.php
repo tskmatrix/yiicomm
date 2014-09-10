@@ -3,6 +3,7 @@
 namespace common\models;
 
 use Yii;
+use common\models\YiicommActiveRecord;
 
 /**
  * This is the model class for table "giftcardtypes".
@@ -21,7 +22,7 @@ use Yii;
  *
  * @property Giftcards[] $giftcards
  */
-class Giftcardtypes extends \yii\db\ActiveRecord
+class Giftcardtypes extends YiicommActiveRecord
 {
     /**
      * @inheritdoc

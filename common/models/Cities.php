@@ -3,6 +3,7 @@
 namespace common\models;
 
 use Yii;
+use common\models\YiicommActiveRecord;
 
 /**
  * This is the model class for table "cities".
@@ -20,7 +21,7 @@ use Yii;
  * @property Geozones $geoZone
  * @property Counties[] $counties
  */
-class Cities extends \yii\db\ActiveRecord
+class Cities extends YiicommActiveRecord
 {
     /**
      * @inheritdoc

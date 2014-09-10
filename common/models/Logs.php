@@ -3,6 +3,7 @@
 namespace common\models;
 
 use Yii;
+use common\models\YiicommActiveRecord;
 
 /**
  * This is the model class for table "logs".
@@ -23,7 +24,7 @@ use Yii;
  * @property Logevents $logEvent
  * @property User $user
  */
-class Logs extends \yii\db\ActiveRecord
+class Logs extends YiicommActiveRecord
 {
     /**
      * @inheritdoc

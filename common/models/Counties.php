@@ -3,6 +3,7 @@
 namespace common\models;
 
 use Yii;
+use common\models\YiicommActiveRecord;
 
 /**
  * This is the model class for table "counties".
@@ -18,7 +19,7 @@ use Yii;
  *
  * @property Cities $city
  */
-class Counties extends \yii\db\ActiveRecord
+class Counties extends YiicommActiveRecord
 {
     /**
      * @inheritdoc

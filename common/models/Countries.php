@@ -3,6 +3,7 @@
 namespace common\models;
 
 use Yii;
+use common\models\YiicommActiveRecord;
 
 /**
  * This is the model class for table "countries".
@@ -18,7 +19,7 @@ use Yii;
  *
  * @property Geozones[] $geozones
  */
-class Countries extends \yii\db\ActiveRecord
+class Countries extends YiicommActiveRecord
 {
     /**
      * @inheritdoc

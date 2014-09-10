@@ -3,6 +3,7 @@
 namespace common\models;
 
 use Yii;
+use common\models\YiicommActiveRecord;
 
 /**
  * This is the model class for table "failedtransactions".
@@ -10,7 +11,7 @@ use Yii;
  * @property integer $FailedTransactionId
  * @property integer $OrderId
  */
-class Failedtransactions extends \yii\db\ActiveRecord
+class Failedtransactions extends YiicommActiveRecord
 {
     /**
      * @inheritdoc

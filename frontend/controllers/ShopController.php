@@ -2,6 +2,11 @@
 
 namespace frontend\controllers;
 
+
+use common\models\Productcategories;
+use common\models\Products;
+use common\models\Productmedias;
+
 class ShopController extends \yii\web\Controller
 {
     public function actionCheckout()
@@ -9,9 +14,28 @@ class ShopController extends \yii\web\Controller
         return $this->render('checkout');
     }
 
-    public function actionIndex()
+    public function actionIndex($id = null)
     {
-        return $this->render('index');
+    	$sidebarcategories = Productcategories::find()->where('ParentProductCategoryId = 0')->asArray()->all();
+    	
+    	if($id === 0 || $id == null)
+    	{
+    		$products = Products::find()->with('productmedias')->asArray()->all();
+    		$countProducts = Products::find()->count();
+    		$pagetitle = ['Name' => 'All products'];
+    	} else {
+    		$products = Products::find()->with('productmedias')->where('ProductCategoryId = '. $id)->asArray()->all();
+    		$countProducts = Products::find()->where('ProductCategoryId = '. $id)->count();
+    		$pagetitle = Productcategories::find()->where('ProductCategoryId = '. $id)->asArray()->one();
+    	}
+    	
+    	
+        return $this->render('index',[
+				'sidebarcategories' => $sidebarcategories,
+        		'products' => $products,
+        		'countProducts' => $countProducts,
+        		'pagetitle' => $pagetitle,
+        ]);
     }
 
     public function actionNewcustomer()
@@ -24,9 +48,18 @@ class ShopController extends \yii\web\Controller
         return $this->render('newproducts');
     }
 
-    public function actionProductdetail()
+    public function actionProductdetail($id = null)
     {
-        return $this->render('productdetail');
+    	if($id !== null || $id !== 0)
+    	{
+    		$product = Productmedias::find()->with('product')->where('ProductId = '. $id)->asArray()->one();
+    	} else {
+    		
+    	}
+        return $this->render('productdetail',[
+				'product' => $product,
+        		
+        ]);
     }
 
 }

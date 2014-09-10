@@ -3,6 +3,7 @@
 namespace common\models;
 
 use Yii;
+use common\models\YiicommActiveRecord;
 
 /**
  * This is the model class for table "banks".
@@ -21,7 +22,7 @@ use Yii;
  *
  * @property Creditcards[] $creditcards
  */
-class Banks extends \yii\db\ActiveRecord
+class Banks extends YiicommActiveRecord
 {
     /**
      * @inheritdoc

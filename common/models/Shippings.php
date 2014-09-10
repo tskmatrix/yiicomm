@@ -3,6 +3,7 @@
 namespace common\models;
 
 use Yii;
+use common\models\YiicommActiveRecord;
 
 /**
  * This is the model class for table "shippings".
@@ -26,7 +27,7 @@ use Yii;
  * @property Shippingstatuses $shippingStatus
  * @property Shippingtypes $shippingType
  */
-class Shippings extends \yii\db\ActiveRecord
+class Shippings extends YiicommActiveRecord
 {
     /**
      * @inheritdoc

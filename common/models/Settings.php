@@ -3,6 +3,7 @@
 namespace common\models;
 
 use Yii;
+use common\models\YiicommActiveRecord;
 
 /**
  * This is the model class for table "settings".
@@ -17,7 +18,7 @@ use Yii;
  * @property integer $updated_at
  * @property integer $deleted_at
  */
-class Settings extends \yii\db\ActiveRecord
+class Settings extends YiicommActiveRecord
 {
     /**
      * @inheritdoc
