@@ -32,7 +32,8 @@ AppAsset::register($this);
                 ],
             ]);
             $menuItems = [
-                ['label' => 'Home', 'url' => ['/site/index']],
+                ['label' => 'Backend', 'url' => ['/site/index']],
+                ['label' => 'Frontend', 'url' => '@publicface'],
             ];
             
             if(!Yii::$app->user->can('productmanager'))
@@ -73,18 +74,15 @@ AppAsset::register($this);
             if(!Yii::$app->user->can('marketinggmanager'))
             {
             	$menuItems[] = ['label' => 'Marketing', 'items' => [
-		            	['label'=> 'Supplier Brands', 'url' => ['/suppliersbrands/index']],
-		            	['label'=> 'Supplier Types', 'url' => ['/suppliertypes/index']],
-		            	['label'=> 'Suppliers People', 'url' => ['/supplierspeople/index']],
-		            	['label'=> 'Suppliers', 'url' => ['/productmedias/index']],
+		            	['label'=> 'Customers', 'url' => ['/customers/index']],
 		            	['label'=> 'Affilliates', 'url' => ['/affiliates/index']],
 		            	['label'=> 'Campaigns', 'url' => ['/campaigns/index']],
-		            	['label'=> 'Campaign Products', 'url' => ['/campainproducts/index']],
+		            	['label'=> 'Campaign Products', 'url' => ['/campaignproducts/index']],
 		            	['label'=> 'Campaign Types', 'url' => ['/campaigntypes/index']],
-		            	['label'=> 'Queued Emails', 'url' => ['/Queuedemails/index']],
-		            	['label'=> 'Gift Cards', 'url' => ['/Giftcards/index']],
-		            	['label'=> 'Gift Card Types', 'url' => ['/Giftcardtypes/index']],
-		            	['label'=> 'Gift Card Histories', 'url' => ['/Giftcardhistories/index']],
+		            	['label'=> 'Queued Emails', 'url' => ['/queuedemails/index']],
+		            	['label'=> 'Gift Cards', 'url' => ['/giftcards/index']],
+		            	['label'=> 'Gift Card Types', 'url' => ['/giftcardtypes/index']],
+		            	['label'=> 'Gift Card Histories', 'url' => ['/giftcardhistories/index']],
 	            	]];
             }
             
