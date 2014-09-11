@@ -32,10 +32,20 @@ AppAsset::register($this);
                 ],
             ]);
             $menuItems = [
-                ['label' => 'Home', 'url' => ['/site/index']],
+                ['label' => 'Backend', 'url' => ['/site/index']],
+                ['label' => 'Frontend', 'url' => '@publicface'],
             ];
             
-            if(!Yii::$app->user->isGuest)
+            if(!Yii::$app->user->can('productmanager'))
+            {
+            	$menuItems[] = ['label' => 'Users', 'items' => [
+		            	['label'=> 'Users', 'url' => ['/user/index']],
+		            	['label'=> 'User Types', 'url' => ['/usertypes/index']],
+		            	['label'=> 'User Rest Data', 'url' => ['/userrestdata/index']],
+	            	]];
+            }
+            
+            if(!Yii::$app->user->can('productmanager'))
             {
             	$menuItems[] = ['label' => 'Products', 'items' => [
 		            	['label'=> 'Product Categories', 'url' => ['/productcategories/index']],
@@ -49,6 +59,30 @@ AppAsset::register($this);
 		            	['label'=> 'Product Options', 'url' => ['/productoptions/index']],
 		            	['label'=> 'Product Price Histories', 'url' => ['/productpricehistories/index']],
 		            	['label'=> 'Product Vote Histories', 'url' => ['/productvotehistories/index']],
+	            	]];
+            }
+            
+            if(!Yii::$app->user->can('suppliergmanager'))
+            {
+            	$menuItems[] = ['label' => 'Suppliers', 'items' => [
+		            	['label'=> 'Supplier Brands', 'url' => ['/suppliersbrands/index']],
+		            	['label'=> 'Suppliers People', 'url' => ['/supplierspeople/index']],
+		            	['label'=> 'Suppliers', 'url' => ['/productmedias/index']],
+	            	]];
+            }
+            
+            if(!Yii::$app->user->can('marketinggmanager'))
+            {
+            	$menuItems[] = ['label' => 'Marketing', 'items' => [
+		            	['label'=> 'Customers', 'url' => ['/customers/index']],
+		            	['label'=> 'Affilliates', 'url' => ['/affiliates/index']],
+		            	['label'=> 'Campaigns', 'url' => ['/campaigns/index']],
+		            	['label'=> 'Campaign Products', 'url' => ['/campaignproducts/index']],
+		            	['label'=> 'Campaign Types', 'url' => ['/campaigntypes/index']],
+		            	['label'=> 'Queued Emails', 'url' => ['/queuedemails/index']],
+		            	['label'=> 'Gift Cards', 'url' => ['/giftcards/index']],
+		            	['label'=> 'Gift Card Types', 'url' => ['/giftcardtypes/index']],
+		            	['label'=> 'Gift Card Histories', 'url' => ['/giftcardhistories/index']],
 	            	]];
             }
             

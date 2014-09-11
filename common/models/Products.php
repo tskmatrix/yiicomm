@@ -3,6 +3,7 @@
 namespace common\models;
 
 use Yii;
+use common\models\YiicommActiveRecord;
 
 /**
  * This is the model class for table "products".
@@ -47,7 +48,7 @@ use Yii;
  * @property Productsrelated[] $productsrelateds
  * @property Productvotehistories[] $productvotehistories
  */
-class Products extends \yii\db\ActiveRecord
+class Products extends YiicommActiveRecord
 {
     /**
      * @inheritdoc

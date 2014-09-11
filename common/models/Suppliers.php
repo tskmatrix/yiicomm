@@ -3,6 +3,7 @@
 namespace common\models;
 
 use Yii;
+use common\models\YiicommActiveRecord;
 
 /**
  * This is the model class for table "suppliers".
@@ -29,7 +30,7 @@ use Yii;
  * @property Suppliersbrands[] $suppliersbrands
  * @property Supplierspeople[] $supplierspeoples
  */
-class Suppliers extends \yii\db\ActiveRecord
+class Suppliers extends YiicommActiveRecord
 {
     /**
      * @inheritdoc

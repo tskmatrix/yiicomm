@@ -89,7 +89,7 @@ IndexAsset::register ( $this );
 		</div>
 
 
-<p><pre>
+<p> <!-- <pre>
 <?php // echo 'Categories Array<br/>';
       // print_r($categories); 
       // echo '<br/>'; ?>
@@ -99,7 +99,7 @@ IndexAsset::register ( $this );
 <?php // echo 'Featured Products Array<br/>';
       // print_r($featuredProducts); 
       // echo '<br/>';?>
-</pre></p>
+</pre> --> </p>
 <!-- <div id="container"> -->
 	<!-- <div class="container span12"> -->
 		<div class="row-fluid">
@@ -112,7 +112,6 @@ IndexAsset::register ( $this );
 				<h3>Categories</h3>
 					<ul class="thumbnails">
 					<?php 
-					$subcntr = 0;
 					foreach($categories as $cat)
 					{ 
 					?>
@@ -142,11 +141,11 @@ IndexAsset::register ( $this );
 										{
 											if($sub[$i]['ParentProductCategoryId'] == $cat['ProductCategoryId'])
 											{							
-												echo Html::a($sub[$i]['Name'].', ','shop/index/'.$sub[$i]['ProductCategoryId']);
+												echo Html::a($sub[$i]['Name'].', ','?r=shop/index&id='.$sub[$i]['ProductCategoryId']);
 											}
 										}
 									}
-										echo Html::a('See All','shop/index/'.$cat['ProductCategoryId'],['class'=>'see-all']); 
+										echo Html::a('See All','?r=shop/index&id='.$cat['ProductCategoryId'],['class'=>'see-all']); 
 										
 									 ?>
 									</p>
@@ -155,7 +154,6 @@ IndexAsset::register ( $this );
 							</div>
 						</li>
 						<?php 
-						$subcntr++;
 					 } ?>
 					</ul>
 				</div>
@@ -173,14 +171,14 @@ IndexAsset::register ( $this );
 							<div class="thumbnail">
 							<?php  echo  Html::a('<img
 									src="'. Yii::$app->request->baseUrl .'/img/products/catalog/'. $fp['productmedias'][0]['ImageUrl'] .'" alt="" /> <span class="frame-overlay"></span>
-									<span class="price">'. $fp['Price'] .'</span', 'shop/details/', ['class' => 'image']) ?>
+									<span class="price">'. $fp['Price'] .'</span', '?r=shop/productdetail&id='. $fp['ProductId'] , ['class' => 'image']) ?>
 								<div class="inner notop nobottom">
 									<h4 class="title"><?php  echo $fp['Name'] ?></h4>
 									<p class="description"><?php  echo $fp['HtmlDescription'] ?></p>
 								</div>
 							</div>
 							<div class="inner darken notop">
-							<?= Html::a('Add<i class="fa fa-shopping-cart"></i>', 'shop/cart', ['class'=> 'btn btn-add-to-cart']) ?>
+							<?= Html::a('Add<i class="fa fa-shopping-cart"></i>', '?r=shop/cart', ['class'=> 'btn btn-add-to-cart']) ?>
 							</div>
 						</li>
 					<?php } ?>	

@@ -3,6 +3,7 @@
 namespace common\models;
 
 use Yii;
+use common\models\YiicommActiveRecord;
 
 /**
  * This is the model class for table "paymenttypes".
@@ -18,7 +19,7 @@ use Yii;
  *
  * @property Paymenttransactions[] $paymenttransactions
  */
-class Paymenttypes extends \yii\db\ActiveRecord
+class Paymenttypes extends YiicommActiveRecord
 {
     /**
      * @inheritdoc

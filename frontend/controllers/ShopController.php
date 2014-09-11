@@ -2,6 +2,11 @@
 
 namespace frontend\controllers;
 
+use yii\data\Pagination;
+use common\models\Productcategories;
+use common\models\Products;
+use common\models\Productmedias;
+
 class ShopController extends \yii\web\Controller
 {
     public function actionCheckout()
@@ -9,9 +14,40 @@ class ShopController extends \yii\web\Controller
         return $this->render('checkout');
     }
 
-    public function actionIndex()
+    public function actionIndex($id = null)
     {
-        return $this->render('index');
+    	$sidebarcategories = Productcategories::find()->where('ParentProductCategoryId = 0')->asArray()->all();
+    	if($id === 0 || $id == null)
+    	{
+    		$query = Products::find()->with('productmedias');
+    		$countQuery = clone $query;
+    		$pages = new Pagination(['totalCount' => $countQuery->count(), 'defaultPageSize' => 3]);
+    		$products = $query->offset($pages->offset)
+    		->limit($pages->limit)
+    		->asArray()
+    		->all();
+    		$countProducts = Products::find()->count();
+    		$pagetitle = ['Name' => 'All products'];
+    	} else {
+    		$query = Products::find()->with('productmedias')->where('ProductCategoryId = '. $id);
+    		$countQuery = clone $query;
+    		$pages = new Pagination(['totalCount' => $countQuery->count(), 'defaultPageSize' => 3]);
+    		$products = $query->offset($pages->offset)
+    		->limit($pages->limit)
+    		->asArray()
+    		->all();
+    		
+    		$countProducts = Products::find()->where('ProductCategoryId = '. $id)->count();
+    		$pagetitle = Productcategories::find()->where('ProductCategoryId = '. $id)->asArray()->one();
+    	}
+    		
+    	return $this->render('index',[
+				'sidebarcategories' => $sidebarcategories,
+        		'products' => $products,
+        		'pages' => $pages,
+        		'countProducts' => $countProducts,
+        		'pagetitle' => $pagetitle,
+        ]);
     }
 
     public function actionNewcustomer()
@@ -24,9 +60,18 @@ class ShopController extends \yii\web\Controller
         return $this->render('newproducts');
     }
 
-    public function actionProductdetail()
+    public function actionProductdetail($id = null)
     {
-        return $this->render('productdetail');
+    	if($id !== null || $id !== 0)
+    	{
+    		$product = Productmedias::find()->with('product')->where('ProductId = '. $id)->asArray()->one();
+    	} else {
+    		
+    	}
+    	return $this->render('productdetail',[
+				'product' => $product,
+        		
+        ]);
     }
 
 }
