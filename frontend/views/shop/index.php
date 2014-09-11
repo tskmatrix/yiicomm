@@ -11,15 +11,10 @@ IndexAsset::register ( $this );
 
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="col-md-12">
-<h3>shop/index</h3>
-
-<p>
-    You may change the content of this page by modifying
-    the file <code><?= __FILE__; ?></code>.
-</p>
-
-
+<div class="col-md-12"><?php // echo '<pre>';
+// print_r($products);
+// echo '</pre>';
+?>
 <!-- start: Container
 <div id="container">
     <div class="container"> -->
@@ -42,15 +37,7 @@ $this->params['breadcrumbs'][] = $this->title;
             <div class="row-fluid shop-result">
                 <div class="inner darken clearfix">
                     <div class="col-md-6 result-count">
-                        I found <?= $countProducts ?> products. 
-                        <?= 
-		             	// display pagination
-		             	LinkPager::widget([
-             			'pagination' => $pages,
-						'options' => ['class'=>'pagination pagination-right'],
-             			]);
-             			?>
-                    </div>
+                        I found <?= $countProducts ?> products.</div>
                     <!-- <div class="col-md-6 result-ordering">
                         <div class="pull-right">
                             <select>
@@ -87,7 +74,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         <div class="thumbnail">
                         <?= Html::a('<img src="'. Yii::$app->request->baseUrl . '/img/products/catalog/'. $row['productmedias'][0]['ImageUrl']. '" alt="">
                                 <span class="frame-overlay"></span>
-                                <span class="price">$'. $row['Price'].'</span>', '?r=shop/productdetails&id='. $row['ProductId'] , ['class'=>'image']) ?>
+                                <span class="price">$'. $row['Price'].'</span>', '?r=shop/productdetail&id='. $row['ProductId'] , ['class'=>'image']) ?>
                             <div class="inner notop nobottom">
                                 <h4 class="title"><?= $row['Name'] ?></h4>
                                 <p class="description"><?= $row['HtmlDescription'] ?></p>
@@ -107,8 +94,14 @@ $this->params['breadcrumbs'][] = $this->title;
             <!-- end: products listing -->
 
             <!-- start: Pagination -->
-             <div class="pagination pagination-right">
-             	
+             <div class="pagination pull-right"> 
+                <?php echo 
+		             	// display pagination
+		             	LinkPager::widget([
+             			'pagination' => $pages,
+						'hideOnSinglePage' => true,
+						]);
+             			?>            	
             </div> 
             <!-- end: Pagination -->
 
@@ -240,7 +233,5 @@ $this->params['breadcrumbs'][] = $this->title;
 <!--     </div>
 </div>
 end: Container -->
-
-
 
 </div>

@@ -9,16 +9,10 @@ IndexAsset::register ( $this );
 
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<h1>shop/productdetail</h1>
-
-<p>
-    You may change the content of this page by modifying
-    the file <code><?= __FILE__; ?></code>.
-</p>
 <!-- <pre>
-<?php // echo 'Productmedias Array<br />';
-// print_r($product);
-// echo '<br />'; ?>
+<?php  echo 'Productmedias Array<br />';
+ print_r($product);
+ echo '<br />'; ?>
 </pre> -->
 
         <div class="row-fluid">

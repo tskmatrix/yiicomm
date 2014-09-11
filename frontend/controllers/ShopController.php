@@ -16,25 +16,22 @@ class ShopController extends \yii\web\Controller
 
     public function actionIndex($id = null)
     {
-    	
     	$sidebarcategories = Productcategories::find()->where('ParentProductCategoryId = 0')->asArray()->all();
-    	
     	if($id === 0 || $id == null)
     	{
     		$query = Products::find()->with('productmedias');
     		$countQuery = clone $query;
-    		$pages = new Pagination(['totalCount' => $countQuery->count()]);
+    		$pages = new Pagination(['totalCount' => $countQuery->count(), 'defaultPageSize' => 3]);
     		$products = $query->offset($pages->offset)
-    		->limit(3) //$pages->limit
+    		->limit($pages->limit)
     		->asArray()
     		->all();
-    		
-    		$countProducts = Products::find()->count();    		
+    		$countProducts = Products::find()->count();
     		$pagetitle = ['Name' => 'All products'];
     	} else {
     		$query = Products::find()->with('productmedias')->where('ProductCategoryId = '. $id);
     		$countQuery = clone $query;
-    		$pages = new Pagination(['totalCount' => $countQuery->count()]);
+    		$pages = new Pagination(['totalCount' => $countQuery->count(), 'defaultPageSize' => 3]);
     		$products = $query->offset($pages->offset)
     		->limit($pages->limit)
     		->asArray()
@@ -43,9 +40,8 @@ class ShopController extends \yii\web\Controller
     		$countProducts = Products::find()->where('ProductCategoryId = '. $id)->count();
     		$pagetitle = Productcategories::find()->where('ProductCategoryId = '. $id)->asArray()->one();
     	}
-    	
-    	
-        return $this->render('index',[
+    		
+    	return $this->render('index',[
 				'sidebarcategories' => $sidebarcategories,
         		'products' => $products,
         		'pages' => $pages,
@@ -72,7 +68,7 @@ class ShopController extends \yii\web\Controller
     	} else {
     		
     	}
-        return $this->render('productdetail',[
+    	return $this->render('productdetail',[
 				'product' => $product,
         		
         ]);
