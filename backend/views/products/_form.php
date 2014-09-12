@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
+use yii\helpers\ArrayHelper;
 use common\models\Suppliers;
 use common\models\Brands;
 use common\models\Producttypes;
@@ -10,6 +11,11 @@ use common\models\Productcategories;
 /* @var $this yii\web\View */
 /* @var $model common\models\Products */
 /* @var $form yii\bootstrap\ActiveForm */
+
+$dataProductCategory = ArrayHelper::map(Productcategories::find()->asArray()->all(), 'ProductCategoryId','Name');
+$dataSuppliers = ArrayHelper::map(Suppliers::find()->asArray()->all(), 'SupplierId', 'Name');
+$dataBrands = ArrayHelper::map(Brands::find()->asArray()->all(), 'BrandId', 'Name');
+$dataProducttypes = ArrayHelper::map(Producttypes::find()->asArray()->all(), 'ProducttypeId', 'Name');
 ?>
 
 <div class="products-form">
@@ -23,28 +29,29 @@ use common\models\Productcategories;
 
     <?= $form->field($model, 'ProductCategoryId', [
     'horizontalCssClasses' => [
-        'wrapper' => 'col-sm-2',
-    ]])->textInput(['maxlength' => 18]) ?>
-
+        'wrapper' => 'col-sm-3',
+    ]])->dropDownList($dataProductCategory,
+		['prompt'=>'----------Choose a Category----------']) ?>
+		
     <?= $form->field($model, 'SupplierId', [
     'horizontalCssClasses' => [
-        'wrapper' => 'col-sm-2',
-    ]])->textInput(['maxlength' => 18]) ?>
+        'wrapper' => 'col-sm-3',
+    ]])->dropDownList($dataSuppliers,['prompt'=>'----------Choose a Supplier----------']) ?>
 
     <?= $form->field($model, 'BrandId', [
     'horizontalCssClasses' => [
-        'wrapper' => 'col-sm-2',
-    ]])->textInput(['maxlength' => 18]) ?>
+        'wrapper' => 'col-sm-3',
+    ]])->dropDownList($dataBrands,['prompt'=>'----------Choose a Brand----------']) ?>
 
     <?= $form->field($model, 'ProductTypeId', [
     'horizontalCssClasses' => [
-        'wrapper' => 'col-sm-2',
-    ]])->textInput(['maxlength' => 18]) ?>
+        'wrapper' => 'col-sm-3',
+    ]])->dropDownList($dataProducttypes,['prompt'=>'----------Choose a Type----------']) ?>
 
     <?= $form->field($model, 'Gender', [
     'horizontalCssClasses' => [
         'wrapper' => 'col-sm-2',
-    ]])->dropDownList($model->getGenderOptions()) ?>
+    ]])->dropDownList($model->getGenderOptions(),['prompt'=>'Choose a Gender']) ?>
 
     <?= $form->field($model, 'SupplierDescription')->textarea(['rows' => 6]) ?>
 
@@ -61,17 +68,17 @@ use common\models\Productcategories;
 
     <?= $form->field($model, 'DiscountPercent', [
     'horizontalCssClasses' => [
-        'wrapper' => 'col-sm-2',
+        'wrapper' => 'col-sm-1',
     ]])->textInput() ?>
 
     <?= $form->field($model, 'CommissionPercent', [
     'horizontalCssClasses' => [
-        'wrapper' => 'col-sm-2',
+        'wrapper' => 'col-sm-1',
     ]])->textInput() ?>
 
     <?= $form->field($model, 'TaxPercent', [
     'horizontalCssClasses' => [
-        'wrapper' => 'col-sm-2',
+        'wrapper' => 'col-sm-1',
     ]])->textInput(['maxlength' => 18]) ?>
 
     <?= $form->field($model, 'Price', [
@@ -100,7 +107,10 @@ use common\models\Productcategories;
 
     <?= $form->field($model, 'IsOnVote')->checkbox() ?>
 
-    <?= $form->field($model, 'VoteCount')->textInput() ?>
+    <?= $form->field($model, 'VoteCount',[
+    'horizontalCssClasses' => [
+        'wrapper' => 'col-sm-2',
+    ]])->textInput() ?>
 
     <?= $form->field($model, 'Comment')->textarea(['rows' => 6]) ?>
 
