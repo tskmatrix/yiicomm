@@ -2,7 +2,6 @@
 
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
-use yii\helpers\ArrayHelper;
 use common\models\Suppliers;
 use common\models\Brands;
 use common\models\Producttypes;
@@ -17,7 +16,6 @@ $dataSuppliers = ArrayHelper::map(Suppliers::find()->asArray()->all(), 'Supplier
 $dataBrands = ArrayHelper::map(Brands::find()->asArray()->all(), 'BrandId', 'Name');
 $dataProducttypes = ArrayHelper::map(Producttypes::find()->asArray()->all(), 'ProducttypeId', 'Name');
 ?>
-
 <div class="products-form">
 
     <?php $form = ActiveForm::begin(['layout' => 'horizontal']); ?>
@@ -32,7 +30,7 @@ $dataProducttypes = ArrayHelper::map(Producttypes::find()->asArray()->all(), 'Pr
         'wrapper' => 'col-sm-3',
     ]])->dropDownList($dataProductCategory,
 		['prompt'=>'----------Choose a Category----------']) ?>
-		
+
     <?= $form->field($model, 'SupplierId', [
     'horizontalCssClasses' => [
         'wrapper' => 'col-sm-3',
@@ -101,11 +99,20 @@ $dataProducttypes = ArrayHelper::map(Producttypes::find()->asArray()->all(), 'Pr
         'wrapper' => 'col-sm-2',
     ]])->textInput() ?>
 
-    <?= $form->field($model, 'IsActive')->checkbox() ?>
+    <?= $form->field($model, 'IsActive', [
+    'horizontalCssClasses' => [
+        'wrapper' => 'col-sm-2',
+    ]])->checkbox() ?>
 
-    <?= $form->field($model, 'IsFeatured')->checkbox() ?>
+    <?= $form->field($model, 'IsFeatured', [
+    'horizontalCssClasses' => [
+        'wrapper' => 'col-sm-2',
+    ]])->checkbox() ?>
 
-    <?= $form->field($model, 'IsOnVote')->checkbox() ?>
+    <?= $form->field($model, 'IsOnVote', [
+    'horizontalCssClasses' => [
+        'wrapper' => 'col-sm-2',
+    ]])->checkbox() ?>
 
     <?= $form->field($model, 'VoteCount',[
     'horizontalCssClasses' => [
