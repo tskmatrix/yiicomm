@@ -24,7 +24,7 @@ use common\models\Productcategories;
     <?= $form->field($model, 'ProductCategoryId', [
     'horizontalCssClasses' => [
         'wrapper' => 'col-sm-2',
-    ]])->textInput(['maxlength' => 18]) ?>
+    ]])->dropDownList() ?>
 
     <?= $form->field($model, 'SupplierId', [
     'horizontalCssClasses' => [
