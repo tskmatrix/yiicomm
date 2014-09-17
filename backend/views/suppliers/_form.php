@@ -1,7 +1,10 @@
 <?php
 
 use yii\helpers\Html;
+use yii\helpers\ArrayHelper;
 use yii\bootstrap\ActiveForm;
+
+$dataSuppliers = ArrayHelper::map($model::find()->asArray()->with('supplierspeoples')->all(), 'SuppliersPeopleId', 'UserId')
 
 /* @var $this yii\web\View */
 /* @var $model common\models\Suppliers */
@@ -65,7 +68,7 @@ use yii\bootstrap\ActiveForm;
     <?= $form->field($model, 'PrimaryPersonId',[
     'horizontalCssClasses' => [
         'wrapper' => 'col-sm-4',
-    ]])->textInput() ?>
+    ]])->dropDownList($dataSuppliers,['prompt'=>'Choose']) ?>
 
     <?= $form->field($model, 'Comment',[
     'horizontalCssClasses' => [

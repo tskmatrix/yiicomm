@@ -3,9 +3,11 @@
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 use yii\helpers\ArrayHelper;
+use common\models\Brands;
 use common\models\Suppliers;
 
-$data = ArrayHelper::map(Suppliers::find()->asArray()->all(),'SupplierId', 'Name');
+$dataBrands = ArrayHelper::map(Brands::find()->asArray()->all(),'BrandId', 'Name');
+$dataSuppliers = ArrayHelper::map(Suppliers::find()->asArray()->all(),'SupplierId', 'Name');
 
 /* @var $this yii\web\View */
 /* @var $model common\models\Suppliersbrands */
@@ -19,12 +21,12 @@ $data = ArrayHelper::map(Suppliers::find()->asArray()->all(),'SupplierId', 'Name
     <?= $form->field($model, 'BrandId',[
     'horizontalCssClasses' => [
         'wrapper' => 'col-sm-3',
-    ]])->textInput() ?>
+    ]])->dropDownList($dataBrands,['prompt'=>'Choose']) ?>
 
     <?= $form->field($model, 'SupplierId',[
     'horizontalCssClasses' => [
         'wrapper' => 'col-sm-4',
-    ]])->dropDownList() ?>
+    ]])->dropDownList($dataSuppliers,['prompt'=>'Choose']) ?>
 
     <?= $form->field($model, 'Comment',[
     'horizontalCssClasses' => [

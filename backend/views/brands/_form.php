@@ -7,8 +7,6 @@ use yii\helpers\ArrayHelper;
 /* @var $this yii\web\View */
 /* @var $model common\models\Brands */
 /* @var $form yii\bootstrap\ActiveForm */
-
-
 ?>
 
 <div class="brands-form">

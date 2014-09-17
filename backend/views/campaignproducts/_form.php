@@ -13,6 +13,7 @@ use common\models\Campaigns;
 
 $dataCampaigns = ArrayHelper::map(Campaigns::find()->asArray()->all(), 'CampaignId','Name');
 $dataProducts = ArrayHelper::map(Products::find()->asArray()->all(),'ProductId','Name');
+$dataStockUnits = ArrayHelper::map(Stockunits::find()->asArray()->all(),'StockUnitId', 'Name');
 ?>
 
 <div class="campaignproducts-form">
@@ -42,7 +43,7 @@ $dataProducts = ArrayHelper::map(Products::find()->asArray()->all(),'ProductId',
     <?= $form->field($model, 'StockUnitId',[
     'horizontalCssClasses' => [
         'wrapper' => 'col-sm-4',
-    ]])->textInput() ?>
+    ]])->dropDownList($dataStockUnits,['prompt'=>'Choose']) ?>
 
     <?= $form->field($model, 'Comment',[
     'horizontalCssClasses' => [

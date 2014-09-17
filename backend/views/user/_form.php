@@ -3,9 +3,12 @@
 use yii\helpers\Html;
 use yii\helpers\ArrayHelper;
 use yii\bootstrap\ActiveForm;
+use kartik\datecontrol\DateControl;
 use common\models\Usertypes;
 
-$dataUserTypes = ArrayHelper::map();
+$dataUserTypes = ArrayHelper::map(Usertypes::find()->asArray()->all(), 'UserTypeId', 'Name');
+
+
 
 /* @var $this yii\web\View */
 /* @var $model common\models\User */
@@ -14,7 +17,12 @@ $dataUserTypes = ArrayHelper::map();
 
 <div class="user-form">
 
-    <?php $form = ActiveForm::begin(['layout'=>'horizontal']); ?>
+    <?php // echo '<pre>'; 
+  //  print_r(Yii::$app->params['dateControlDisplay']); 
+  //  print_r(Yii::$app->params['dateControlSave']); 
+  //  print_r(Yii::$app->formatter);
+  //  echo '</pre>';
+    $form = ActiveForm::begin(['layout'=>'horizontal']); ?>
 
     <?= $form->field($model, 'UserTypeId',[
     'horizontalCssClasses' => [
@@ -61,12 +69,18 @@ $dataUserTypes = ArrayHelper::map();
         'wrapper' => 'col-sm-4',
     ]])->textInput(['maxlength' => 50]) ?>
 
-    <?= $form->field($model, 'Gender')->textInput(['maxlength' => 1]) ?>
+    <?= $form->field($model, 'Gender',[
+    'horizontalCssClasses' => [
+        'wrapper' => 'col-sm-2',
+    ]])->dropDownList($model->getGenderOptions(),['prompt'=>'Choose a Gender']) ?>
 
     <?= $form->field($model, 'Birthday',[
     'horizontalCssClasses' => [
         'wrapper' => 'col-sm-4',
-    ]])->textInput() ?>
+    ]])->widget(DateControl::classname(), [
+			'type'=>DateControl::FORMAT_DATE,
+    		'ajaxConversion' => true,
+		]) ?>
 
     <?= $form->field($model, 'Website',[
     'horizontalCssClasses' => [
@@ -83,14 +97,14 @@ $dataUserTypes = ArrayHelper::map();
         'wrapper' => 'col-sm-4',
     ]])->textInput(['maxlength' => 100]) ?>
 
-    <?= $form->field($model, 'IsLikedFanPage')->textInput(['maxlength' => 1]) ?>
+    <?= $form->field($model, 'IsLikedFanPage')->checkbox() ?>
 
     <?= $form->field($model, 'PhotoUrl',[
     'horizontalCssClasses' => [
         'wrapper' => 'col-sm-4',
     ]])->textInput(['maxlength' => 1000]) ?>
 
-    <?= $form->field($model, 'IsPersonal')->textInput(['maxlength' => 1]) ?>
+    <?= $form->field($model, 'IsPersonal')->checkbox() ?>
 
     <?= $form->field($model, 'IdentityNumber',[
     'horizontalCssClasses' => [
@@ -125,12 +139,26 @@ $dataUserTypes = ArrayHelper::map();
     <?= $form->field($model, 'lastLogin',[
     'horizontalCssClasses' => [
         'wrapper' => 'col-sm-4',
-    ]])->textInput() ?>
+    ]])->widget(DateControl::classname(), [
+		'type'=>DateControl::FORMAT_DATE,
+		'ajaxConversion' => true,
+	])?>
 
     <?= $form->field($model, 'previousLogin',[
     'horizontalCssClasses' => [
         'wrapper' => 'col-sm-4',
-    ]])->textInput() ?>
+    ]])->widget(DateControl::classname(), [
+		'type' => DateControl::FORMAT_DATE,
+		'ajaxConversion' => true,
+		]) ?>
+
+    <?= $form->field($model, 'deleted_at',[
+    'horizontalCssClasses' => [
+        'wrapper' => 'col-sm-4',
+    ]])->widget(DateControl::classname(), [
+		'type'=>DateControl::FORMAT_DATE,
+		'ajaxConversion' => true,
+	]) ?>
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>

@@ -5,7 +5,7 @@ use yii\helpers\ArrayHelper;
 use yii\bootstrap\ActiveForm;
 use common\models\User;
 
-$dataUser = ArrayHelper::map(User::find()->asArray()->all(),'UserId', 'username');
+$dataUser = ArrayHelper::map(User::find()->asArray()->all(),'id', 'username');
 
 /* @var $this yii\web\View */
 /* @var $model common\models\Userrestdata */

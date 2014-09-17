@@ -11,7 +11,7 @@ use common\models\User;
 /* @var $form yii\bootstrap\ActiveForm */
 
 $dataCustomers = ArrayHelper::map(Customers::find()->asArray()->all(),'RefererCustomerId','Name');
-$dataUser = ArrayHelper::map(User::find()->asArray()->all(),'UserId','username');
+$dataUser = ArrayHelper::map(User::find()->asArray()->all(),'id','username');
 ?>
 
 <div class="customers-form">
@@ -20,7 +20,7 @@ $dataUser = ArrayHelper::map(User::find()->asArray()->all(),'UserId','username')
 
     <?= $form->field($model, 'UserId',[
     'horizontalCssClasses' => [
-        'wrapper' => 'col-sm-4',
+        'wrapper' => 'col-sm-2',
     ]])->dropDownList($dataUser,['prompt'=>'Choose a User']) ?>
 
     <?= $form->field($model, 'IsMallingActive',[
@@ -40,8 +40,8 @@ $dataUser = ArrayHelper::map(User::find()->asArray()->all(),'UserId','username')
 
     <?= $form->field($model, 'RefererCustomerId',[
     'horizontalCssClasses' => [
-        'wrapper' => 'col-sm-4',
-    ]])->dropDownList($dataUser,['prompt'=>'choose a user']) ?>
+        'wrapper' => 'col-sm-2',
+    ]])->dropDownList($dataUser,['prompt'=>'Choose a User']) ?>
 
     <?= $form->field($model, 'LastInvoiceAddressId',[
     'horizontalCssClasses' => [

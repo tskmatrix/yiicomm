@@ -6,8 +6,8 @@ use yii\helpers\ArrayHelper;
 use common\models\User;
 use common\models\Suppliers;
 
-$dataUser = ArrayHelper::map(User::find()-asArray()->all(),'UserId','username');
-$dataSuppliers = ArrayHelper::map(Suers::find()->asArray()->all(),'SupplierId','Name');
+$dataUser = ArrayHelper::map(User::find()->where('UserTypeId = 2')->asArray()->all(),'id','username');
+$dataSuppliers = ArrayHelper::map(Suppliers::find()->asArray()->all(),'SupplierId','Name');
 
 /* @var $this yii\web\View */
 /* @var $model common\models\Supplierspeople */

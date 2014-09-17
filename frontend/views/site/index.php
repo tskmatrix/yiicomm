@@ -2,6 +2,7 @@
 /* @var $this yii\web\View */
 use frontend\assets\IndexAsset;
 use yii\helpers\Html;
+use kartik\social\GithubPlugin;
 
 $this->title = 'Yiicomm - a tutorial';
 
@@ -35,7 +36,9 @@ IndexAsset::register ( $this );
 							and are ready for more.<br /> We will be coding our site pretty
 							heavily and you will find the code on github.
 						</p>
-
+						  
+                         <p><?php  echo GithubPlugin::widget(['type'=>GithubPlugin::FOLLOW, 'settings' => ['user'=>'tskmatrix', 'repo'=>'yiicomm', 'size'=>'large', 'count'=>'true']]);?></p> 
+                        
 						<p><?= Html::a('GitHub &raquo;','https://github.com/tskmatrix/yiicomm',['class'=>'btn btn-default', 'target'=>'_blank']); ?></p>
 					</div>
 					<div class="col-lg-4"> <!-- <div class="span4"> -->

@@ -7,19 +7,19 @@ use common\models\Campaigntypes;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\Campaigns */
-/* @var $form yii\widgets\ActiveForm */
+/* @var $form yii\bootstrap\ActiveForm */
 
 $data = ArrayHelper::map(Campaigntypes::find()->asArray()->all(),'CampaignTypeId','Name');
 ?>
 
 <div class="campaigns-form">
 
-    <?php $form = ActiveForm::begin(); ?>
+    <?php $form = ActiveForm::begin(['layout'=>'horizontal']); ?>
 
     <?= $form->field($model, 'CampaignTypeId',[
     'horizontalCssClasses' => [
-        'wrapper' => 'col-sm-4',
-    ]])->dropDownList($data,['prompt'=>'Choose A Type']) ?>
+        'wrapper' => 'col-sm-3',
+    ]])->dropDownList($data,['prompt'=>'Choose A Campaign Type']) ?>
 
     <?= $form->field($model, 'Name',[
     'horizontalCssClasses' => [
@@ -41,29 +41,29 @@ $data = ArrayHelper::map(Campaigntypes::find()->asArray()->all(),'CampaignTypeId
         'wrapper' => 'col-sm-4',
     ]])->textInput(['maxlength' => 150]) ?>
 
-    <?= $form->field($model, 'DiscountPercent',[
-    'horizontalCssClasses' => [
-        'wrapper' => 'col-sm-3',
-    ]])->textInput() ?>
-
     <?= $form->field($model, 'ImageUrl',[
     'horizontalCssClasses' => [
         'wrapper' => 'col-sm-4',
     ]])->textInput(['maxlength' => 500]) ?>
 
+    <?= $form->field($model, 'DiscountPercent',[
+    'horizontalCssClasses' => [
+        'wrapper' => 'col-sm-1',
+    ]])->textInput() ?>
+
     <?= $form->field($model, 'OrderLimit',[
     'horizontalCssClasses' => [
-        'wrapper' => 'col-sm-2',
+        'wrapper' => 'col-sm-1',
     ]])->textInput() ?>
 
     <?= $form->field($model, 'MaximumProductPurchaceLimit',[
     'horizontalCssClasses' => [
-        'wrapper' => 'col-sm-2',
+        'wrapper' => 'col-sm-1',
     ]])->textInput() ?>
 
     <?= $form->field($model, 'MinimumProductPurchaceLimit',[
     'horizontalCssClasses' => [
-        'wrapper' => 'col-sm-2',
+        'wrapper' => 'col-sm-1',
     ]])->textInput() ?>
 
     <?= $form->field($model, 'StartedOn',[

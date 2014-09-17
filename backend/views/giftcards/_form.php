@@ -1,68 +1,125 @@
 <?php
 
 use yii\helpers\Html;
-use yii\widgets\ActiveForm;
+use yii\helpers\ArrayHelper;
+use yii\bootstrap\ActiveForm;
+use common\models\Giftcardtypes;
+
+$dataGiftCardType = ArrayHelper::map(Giftcardtypes::find()->asArray()->all(),'GiftCardTypeId','Name');
 
 /* @var $this yii\web\View */
 /* @var $model common\models\Giftcards */
-/* @var $form yii\widgets\ActiveForm */
+/* @var $form yii\bootstrap\ActiveForm */
 ?>
 
 <div class="giftcards-form">
 
-    <?php $form = ActiveForm::begin(); ?>
+    <?php $form = ActiveForm::begin(['layout'=>'horizontal']); ?>
 
-    <?= $form->field($model, 'GiftCardTypeId')->textInput() ?>
+    <?= $form->field($model, 'GiftCardTypeId',[
+    'horizontalCssClasses' => [
+        'wrapper' => 'col-sm-3',
+    ]])->dropDownList($dataGiftCardType,['prompt'=>'Choose a Type']) ?>
 
-    <?= $form->field($model, 'Name')->textInput(['maxlength' => 500]) ?>
+    <?= $form->field($model, 'Name',[
+    'horizontalCssClasses' => [
+        'wrapper' => 'col-sm-3',
+    ]])->textInput(['maxlength' => 500]) ?>
 
-    <?= $form->field($model, 'Description')->textarea(['rows' => 6]) ?>
+    <?= $form->field($model, 'Description',[
+    'horizontalCssClasses' => [
+        'wrapper' => 'col-sm-3',
+    ]])->textarea(['rows' => 6]) ?>
 
-    <?= $form->field($model, 'GiftCardCode')->textInput(['maxlength' => 50]) ?>
+    <?= $form->field($model, 'GiftCardCode',[
+    'horizontalCssClasses' => [
+        'wrapper' => 'col-sm-3',
+    ]])->textInput(['maxlength' => 50]) ?>
 
-    <?= $form->field($model, 'SenderCustomerId')->textInput() ?>
+    <?= $form->field($model, 'SenderCustomerId',[
+    'horizontalCssClasses' => [
+        'wrapper' => 'col-sm-3',
+    ]])->textInput() ?>
 
-    <?= $form->field($model, 'SenderName')->textInput(['maxlength' => 100]) ?>
+    <?= $form->field($model, 'SenderName',[
+    'horizontalCssClasses' => [
+        'wrapper' => 'col-sm-3',
+    ]])->textInput(['maxlength' => 100]) ?>
 
-    <?= $form->field($model, 'SenderPhone')->textInput(['maxlength' => 10]) ?>
+    <?= $form->field($model, 'SenderPhone',[
+    'horizontalCssClasses' => [
+        'wrapper' => 'col-sm-3',
+    ]])->textInput(['maxlength' => 10]) ?>
 
-    <?= $form->field($model, 'SenderEmail')->textInput(['maxlength' => 255]) ?>
+    <?= $form->field($model, 'SenderEmail',[
+    'horizontalCssClasses' => [
+        'wrapper' => 'col-sm-3',
+    ]])->textInput(['maxlength' => 255]) ?>
 
-    <?= $form->field($model, 'SenderMessage')->textarea(['rows' => 6]) ?>
+    <?= $form->field($model, 'SenderMessage',[
+    'horizontalCssClasses' => [
+        'wrapper' => 'col-sm-3',
+    ]])->textarea(['rows' => 6]) ?>
 
-    <?= $form->field($model, 'RecipientCustomerId')->textInput() ?>
+    <?= $form->field($model, 'RecipientCustomerId',[
+    'horizontalCssClasses' => [
+        'wrapper' => 'col-sm-3',
+    ]])->textInput() ?>
 
-    <?= $form->field($model, 'RecipientName')->textInput(['maxlength' => 100]) ?>
+    <?= $form->field($model, 'RecipientName',[
+    'horizontalCssClasses' => [
+        'wrapper' => 'col-sm-3',
+    ]])->textInput(['maxlength' => 100]) ?>
 
-    <?= $form->field($model, 'RecipientPhone')->textInput(['maxlength' => 10]) ?>
+    <?= $form->field($model, 'RecipientPhone',[
+    'horizontalCssClasses' => [
+        'wrapper' => 'col-sm-3',
+    ]])->textInput(['maxlength' => 10]) ?>
 
-    <?= $form->field($model, 'RecipientEmail')->textInput(['maxlength' => 255]) ?>
+    <?= $form->field($model, 'RecipientEmail',[
+    'horizontalCssClasses' => [
+        'wrapper' => 'col-sm-3',
+    ]])->textInput(['maxlength' => 255]) ?>
 
-    <?= $form->field($model, 'StartedOn')->textInput() ?>
+    <?= $form->field($model, 'StartedOn',[
+    'horizontalCssClasses' => [
+        'wrapper' => 'col-sm-3',
+    ]])->textInput() ?>
 
-    <?= $form->field($model, 'EndedOn')->textInput() ?>
+    <?= $form->field($model, 'EndedOn',[
+    'horizontalCssClasses' => [
+        'wrapper' => 'col-sm-3',
+    ]])->textInput() ?>
 
-    <?= $form->field($model, 'IsActive')->checkbox() ?>
+    <?= $form->field($model, 'IsActive',[
+    'horizontalCssClasses' => [
+        'wrapper' => 'col-sm-3',
+    ]])->checkbox() ?>
 
-    <?= $form->field($model, 'IsNotified')->checkbox() ?>
+    <?= $form->field($model, 'IsNotified',[
+    'horizontalCssClasses' => [
+        'wrapper' => 'col-sm-3',
+    ]])->checkbox() ?>
 
-    <?= $form->field($model, 'IsLimited')->checkbox() ?>
+    <?= $form->field($model, 'IsLimited',[
+    'horizontalCssClasses' => [
+        'wrapper' => 'col-sm-3',
+    ]])->checkbox() ?>
 
-    <?= $form->field($model, 'MinimumBasketAmount')->textInput(['maxlength' => 18]) ?>
+    <?= $form->field($model, 'MinimumBasketAmount',[
+    'horizontalCssClasses' => [
+        'wrapper' => 'col-sm-3',
+    ]])->textInput(['maxlength' => 18]) ?>
 
-    <?= $form->field($model, 'MinimumBasketItemCount')->textInput() ?>
+    <?= $form->field($model, 'MinimumBasketItemCount',[
+    'horizontalCssClasses' => [
+        'wrapper' => 'col-sm-3',
+    ]])->textInput() ?>
 
-    <?= $form->field($model, 'Comment')->textarea(['rows' => 6]) ?>
-
-    <?= $form->field($model, 'created_by')->textInput() ?>
-
-    <?= $form->field($model, 'LastUpdatedBy')->textInput() ?>
-
-    <?= $form->field($model, 'created_at')->textInput() ?>
-
-    <?= $form->field($model, 'updated_at')->textInput() ?>
-
-    <?= $form->field($model, 'deleted_at')->textInput() ?>
+    <?= $form->field($model, 'Comment',[
+    'horizontalCssClasses' => [
+        'wrapper' => 'col-sm-3',
+    ]])->textarea(['rows' => 6]) ?>
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>

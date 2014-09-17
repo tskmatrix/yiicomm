@@ -2,7 +2,7 @@
 
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
-use tii\helpers\ArrayHelper;
+use yii\helpers\ArrayHelper;
 use common\models\Customers;
 use common\models\Orders;
 use common\models\Giftcards;
@@ -11,9 +11,9 @@ use common\models\Giftcards;
 /* @var $model common\models\Giftcardhistories */
 /* @var $form yii\widgets\ActiveForm */
 
-$dataCustomers = ArrayHelper::map();
-$dataOrders = ArrayHelper::map();
-$dataGiftCards = ArrayHelper::map();
+$dataCustomers = ArrayHelper::map(Customers::find()->asArray()->all(),'CustomerId','UserId');
+$dataOrders = ArrayHelper::map(Orders::find()->asArray()->all(),'OrderID', 'Name');
+$dataGiftCards = ArrayHelper::map(Giftcards::find()->asArray()->all(),'GiftCardId','Name');
 ?>
 
 <div class="giftcardhistories-form">
@@ -23,17 +23,17 @@ $dataGiftCards = ArrayHelper::map();
     <?= $form->field($model, 'GiftCardID',[
     'horizontalCssClasses' => [
         'wrapper' => 'col-sm-4',
-    ]])->dropDownList($dataGiftCards,['GiftCardID'=>'Name']) ?>
+    ]])->dropDownList($dataGiftCards,['prompt'=>'Choose']) ?>
 
     <?= $form->field($model, 'CustomerID',[
     'horizontalCssClasses' => [
         'wrapper' => 'col-sm-4',
-    ]])->dropDownList($dataCustomers,['CustomerID'=>'']) ?>
+    ]])->dropDownList($dataCustomers,['prompt'=>'Choose']) ?>
 
     <?= $form->field($model, 'OrderID',[
     'horizontalCssClasses' => [
         'wrapper' => 'col-sm-4',
-    ]])->dropDownList($dataOrders,['OrderId'=>'']) ?>
+    ]])->dropDownList($dataOrders,['prompt'=>'Choose']) ?>
 
     <?= $form->field($model, 'BasketAmount',[
     'horizontalCssClasses' => [
