@@ -1315,5 +1315,144 @@
             "yii",
             "yii2"
         ]
+    },
+    {
+        "name": "pfarrer/yii2-email-obfuscator",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/Pfarrer/yii2-email-obfuscator.git",
+            "reference": "eed1394e187c8df0e0fc825365279c3751f040b8"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/Pfarrer/yii2-email-obfuscator/zipball/eed1394e187c8df0e0fc825365279c3751f040b8",
+            "reference": "eed1394e187c8df0e0fc825365279c3751f040b8",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.4.0",
+            "yiisoft/yii2": "*"
+        },
+        "time": "2014-08-17 15:23:57",
+        "type": "yii2-extension",
+        "installation-source": "source",
+        "autoload": {
+            "psr-4": {
+                "pfarrer\\yii2\\email\\": ""
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "BSD-3-Clause"
+        ],
+        "authors": [
+            {
+                "name": "Brian Pfretzschner",
+                "email": "brian.pfretzschner@gmail.com"
+            }
+        ],
+        "description": "Yii2 extension to obfuscate eMail addresses.",
+        "homepage": "https://github.com/Pfarrer/yii2-email-obfuscator",
+        "keywords": [
+            "email",
+            "extension",
+            "obfuscation",
+            "obfuscator",
+            "yii2"
+        ]
+    },
+    {
+        "name": "yiisoft/yii2-jui",
+        "version": "2.0.0-beta",
+        "version_normalized": "2.0.0.0-beta",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/yiisoft/yii2-jui.git",
+            "reference": "24626ae44d56b86275e2dcdadf874bc21028a9f8"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/yiisoft/yii2-jui/zipball/24626ae44d56b86275e2dcdadf874bc21028a9f8",
+            "reference": "24626ae44d56b86275e2dcdadf874bc21028a9f8",
+            "shasum": ""
+        },
+        "require": {
+            "yiisoft/yii2": "*"
+        },
+        "time": "2014-04-13 21:58:59",
+        "type": "yii2-extension",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "yii\\jui\\": ""
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "BSD-3-Clause"
+        ],
+        "authors": [
+            {
+                "name": "Qiang Xue",
+                "email": "qiang.xue@gmail.com",
+                "homepage": "http://www.yiiframework.com/",
+                "role": "Founder and project lead"
+            }
+        ],
+        "description": "The Jquery UI extension for the Yii framework",
+        "keywords": [
+            "jQuery UI",
+            "renderer",
+            "yii2"
+        ]
+    },
+    {
+        "name": "philippfrenzel/yii2fullcalendar",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/philippfrenzel/yii2fullcalendar.git",
+            "reference": "0fb1c268831b4d6d5a03c95062472666dad0c1c7"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/philippfrenzel/yii2fullcalendar/zipball/0fb1c268831b4d6d5a03c95062472666dad0c1c7",
+            "reference": "0fb1c268831b4d6d5a03c95062472666dad0c1c7",
+            "shasum": ""
+        },
+        "require": {
+            "yiisoft/yii2": "*",
+            "yiisoft/yii2-jui": "*"
+        },
+        "time": "2014-09-17 08:47:39",
+        "type": "yii2-extension",
+        "installation-source": "source",
+        "autoload": {
+            "psr-4": {
+                "yii2fullcalendar\\": ""
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT License"
+        ],
+        "authors": [
+            {
+                "name": "Philipp Frenzel",
+                "email": "philipp@frenzel.net",
+                "homepage": "http://www.frenzel.net/",
+                "role": "Author Version Yii2"
+            }
+        ],
+        "description": "Yii2 fullcalendar Widgets",
+        "homepage": "http://www.frenzel.net/",
+        "keywords": [
+            "framework",
+            "yii",
+            "yii2 fullcalendar"
+        ]
     }
 ]
