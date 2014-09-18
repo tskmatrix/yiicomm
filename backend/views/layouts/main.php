@@ -59,15 +59,17 @@ AppAsset::register($this);
 		            	['label'=> 'Product Options', 'url' => ['/productoptions/index']],
 		            	['label'=> 'Product Price Histories', 'url' => ['/productpricehistories/index']],
 		            	['label'=> 'Product Vote Histories', 'url' => ['/productvotehistories/index']],
+		            	['label'=> 'Brands', 'url' => ['/brands/index']],
 	            	]];
             }
             
             if(!Yii::$app->user->can('suppliergmanager'))
             {
             	$menuItems[] = ['label' => 'Suppliers', 'items' => [
+		            	['label'=> 'Brands', 'url' => ['/brands/index']],
 		            	['label'=> 'Supplier Brands', 'url' => ['/suppliersbrands/index']],
 		            	['label'=> 'Suppliers People', 'url' => ['/supplierspeople/index']],
-		            	['label'=> 'Suppliers', 'url' => ['/productmedias/index']],
+		            	['label'=> 'Suppliers', 'url' => ['/suppliers/index']],
 	            	]];
             }
             

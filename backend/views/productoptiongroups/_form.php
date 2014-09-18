@@ -10,23 +10,22 @@ use yii\widgets\ActiveForm;
 
 <div class="productoptiongroups-form">
 
-    <?php $form = ActiveForm::begin(); ?>
+    <?php $form = ActiveForm::begin(['layout'=>'horizontal']); ?>
 
-    <?= $form->field($model, 'Name')->textInput(['maxlength' => 500]) ?>
+    <?= $form->field($model, 'Name',[
+    'horizontalCssClasses' => [
+        'wrapper' => 'col-sm-4',
+    ]])->textInput(['maxlength' => 500]) ?>
 
-    <?= $form->field($model, 'DisplayOrder')->textInput() ?>
+    <?= $form->field($model, 'DisplayOrder',[
+    'horizontalCssClasses' => [
+        'wrapper' => 'col-sm-2',
+    ]])->textInput() ?>
 
-    <?= $form->field($model, 'Comment')->textarea(['rows' => 6]) ?>
-
-    <?= $form->field($model, 'created_by')->textInput() ?>
-
-    <?= $form->field($model, 'LastUpdatedBy')->textInput() ?>
-
-    <?= $form->field($model, 'created_at')->textInput() ?>
-
-    <?= $form->field($model, 'updated_at')->textInput() ?>
-
-    <?= $form->field($model, 'deleted_at')->textInput() ?>
+    <?= $form->field($model, 'Comment',[
+    'horizontalCssClasses' => [
+        'wrapper' => 'col-sm-4',
+    ]])->textarea(['rows' => 6]) ?>
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>

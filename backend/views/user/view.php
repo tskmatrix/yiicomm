@@ -19,7 +19,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <?= Html::a('Delete', ['delete', 'id' => $model->id], [
             'class' => 'btn btn-danger',
             'data' => [
-                'confirm' => 'Are you sure you want to delete this item?',
+                'confirm' => 'This is a HARD delete. Are you sure you want to delete this item?',
                 'method' => 'post',
             ],
         ]) ?>
@@ -39,7 +39,10 @@ $this->params['breadcrumbs'][] = $this->title;
             'PreferredName',
             'Surname',
             'Gender',
-            'Birthday',
+            'Birthday:html',[
+				'label'=>'Birthday',
+				'value' => date('M d, Y', $model->Birthday)
+    		],
             'Website',
             'FacebookId',
             'TwitterId',
@@ -52,13 +55,28 @@ $this->params['breadcrumbs'][] = $this->title;
             'Comment:ntext',
             'role',
             'status',
-            'lastLogin',
-            'previousLogin',
+            'lastLogin:html',[
+				'label'=>'Last Login',
+				'value' => date('M d, Y', $model->lastLogin)
+    		],
+            'previousLogin:html',[
+				'label'=>'Previous Login',
+				'value' => date('M d, Y', $model->previousLogin)
+    		],
             'created_by',
             'LastUpdatedBy',
-            'created_at',
-            'updated_at',
-            'deleted_at',
+            'created_at:html',[
+				'label'=>'Created At',
+				'value' => date('M d, Y', $model->created_at)
+    		],
+            'updated_at:html',[
+				'label'=>'Updated At',
+				'value' => date('M d, Y', $model->updated_at)
+    		],
+            'deleted_at:html',[
+				'label'=>'Deleted At',
+				'value' => date('M d, Y', $model->deleted_at)
+    		],
         ],
     ]) ?>
 

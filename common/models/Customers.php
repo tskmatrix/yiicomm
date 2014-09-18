@@ -26,6 +26,7 @@ use common\models\YiicommActiveRecord;
  *
  * @property Affiliates[] $affiliates
  * @property Giftcardhistories[] $giftcardhistories
+ * @property User[] $user 
  */
 class Customers extends YiicommActiveRecord
 {
@@ -89,5 +90,13 @@ class Customers extends YiicommActiveRecord
     public function getGiftcardhistories()
     {
         return $this->hasMany(Giftcardhistories::className(), ['CustomerID' => 'CustomerId']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getUser()
+    {
+        return $this->hasOne(User::className(), ['UserId' => 'id']);
     }
 }

@@ -1,34 +1,40 @@
 <?php
 
 use yii\helpers\Html;
-use yii\widgets\ActiveForm;
+use yii\helpers\ArrayHelper;
+use yii\bootstrap\ActiveForm;
+use common\models\User;
+
+$dataUser = ArrayHelper::map(User::find()->asArray()->all(),'id', 'username');
 
 /* @var $this yii\web\View */
 /* @var $model common\models\Userrestdata */
-/* @var $form yii\widgets\ActiveForm */
+/* @var $form yii\bootstrap\ActiveForm */
 ?>
 
 <div class="userrestdata-form">
 
-    <?php $form = ActiveForm::begin(); ?>
+    <?php $form = ActiveForm::begin(['layout'=>'horizontal']); ?>
 
-    <?= $form->field($model, 'UserId')->textInput() ?>
+    <?= $form->field($model, 'UserId',[
+    'horizontalCssClasses' => [
+        'wrapper' => 'col-sm-4',
+    ]])->dropDownList($dataUser,['prompt'=>'Choose a User']) ?>
 
-    <?= $form->field($model, 'FacebookData')->textarea(['rows' => 6]) ?>
+    <?= $form->field($model, 'FacebookData',[
+    'horizontalCssClasses' => [
+        'wrapper' => 'col-sm-4',
+    ]])->textarea(['rows' => 6]) ?>
 
-    <?= $form->field($model, 'TwitterData')->textarea(['rows' => 6]) ?>
+    <?= $form->field($model, 'TwitterData',[
+    'horizontalCssClasses' => [
+        'wrapper' => 'col-sm-4',
+    ]])->textarea(['rows' => 6]) ?>
 
-    <?= $form->field($model, 'Comment')->textarea(['rows' => 6]) ?>
-
-    <?= $form->field($model, 'created_by')->textInput() ?>
-
-    <?= $form->field($model, 'LastUpdatedBy')->textInput() ?>
-
-    <?= $form->field($model, 'created_at')->textInput() ?>
-
-    <?= $form->field($model, 'updated_at')->textInput() ?>
-
-    <?= $form->field($model, 'deleted_at')->textInput() ?>
+    <?= $form->field($model, 'Comment',[
+    'horizontalCssClasses' => [
+        'wrapper' => 'col-sm-4',
+    ]])->textarea(['rows' => 6]) ?>
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>

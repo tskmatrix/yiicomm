@@ -58,6 +58,10 @@ class User extends ActiveRecord implements IdentityInterface
     const STATUS_ACTIVE = 10;
     const ROLE_USER = 10;
     
+    const GENDER_MALE = 'M';
+    const GENDER_FEMALE = 'F';
+    const GENDER_PRODUCT = 'A';
+    
     /**
      * @inheritdoc
      */
@@ -308,5 +312,14 @@ class User extends ActiveRecord implements IdentityInterface
     public function getUserrestdatas()
     {
         return $this->hasMany(Userrestdata::className(), ['UserId' => 'id']);
+    } 
+    
+    function getGenderOptions()
+    {
+    	return array(
+    			self::GENDER_PRODUCT => 'Asexual',
+    			self::GENDER_MALE => 'Male',
+    			self::GENDER_FEMALE => 'Female',
+    	);
     }
 }

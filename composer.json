@@ -17,7 +17,14 @@
         "php": ">=5.4.0",
         "yiisoft/yii2": "*",
         "yiisoft/yii2-bootstrap": "*",
-        "yiisoft/yii2-swiftmailer": "*"
+        "yiisoft/yii2-swiftmailer": "*",
+        "kartik-v/yii2-social": "dev-master",
+        "kartik-v/yii2-datecontrol": "dev-master",
+        "kartik-v/yii2-helpers": "dev-master",
+        "miloschuman/yii2-highcharts-widget": "dev-master",
+        "kartik-v/yii2-password": "dev-master",
+        "pfarrer/yii2-email-obfuscator": "dev-master",
+        "philippfrenzel/yii2fullcalendar": "dev-master"
     },
     "require-dev": {
         "yiisoft/yii2-codeception": "*",
