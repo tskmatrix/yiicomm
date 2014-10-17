@@ -29,7 +29,7 @@ use yii\helpers\Html;
  *     'name'  => 'country',
  *     'clientOptions' => ['step' => 2],
  * ]);
- *```
+ * ```
  *
  * @see http://api.jqueryui.com/spinner/
  * @author Alexander Kochetov <creocoder@gmail.com>
@@ -44,13 +44,14 @@ class Spinner extends InputWidget
         'spin' => 'spin',
     ];
 
+
     /**
      * Renders the widget.
      */
     public function run()
     {
         echo $this->renderWidget();
-        $this->registerWidget('spinner', SpinnerAsset::className());
+        $this->registerWidget('spinner');
     }
 
     /**

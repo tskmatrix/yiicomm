@@ -1,0 +1,50 @@
+<?php
+
+use yii\helpers\Html;
+use yii\bootstrap\ActiveForm;
+use kartik\datecontrol\DateControl;
+
+/* @var $this yii\web\View */
+/* @var $model common\models\Orderstatuses */
+/* @var $form yii\bootstrap\ActiveForm */
+?>
+
+<div class="orderstatuses-form">
+
+    <?php $form = ActiveForm::begin(['layout'=>'horizontal']); ?>
+
+    <?= $form->field($model, 'Name', [
+    'horizontalCssClasses' => [
+        'wrapper' => 'col-sm-4',
+    ]])->textInput(['maxlength' => 500]) ?>
+
+    <?= $form->field($model, 'Description', [
+    'horizontalCssClasses' => [
+        'wrapper' => 'col-sm-4',
+    ]])->textarea(['rows' => 6]) ?>
+
+    <?= $form->field($model, 'StatusOrder', [
+    'horizontalCssClasses' => [
+        'wrapper' => 'col-sm-4',
+    ]])->textInput() ?>
+
+    <?= $form->field($model, 'Comment', [
+    'horizontalCssClasses' => [
+        'wrapper' => 'col-sm-4',
+    ]])->textarea(['rows' => 6]) ?>
+
+    <?= $form->field($model, 'deleted_at', [
+    'horizontalCssClasses' => [
+        'wrapper' => 'col-sm-4',
+    ]])->widget(DateControl::classname(), [
+		'type'=>DateControl::FORMAT_DATE,
+		'ajaxConversion' => true,
+		]) ?>
+
+    <div class="form-group">
+        <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+    </div>
+
+    <?php ActiveForm::end(); ?>
+
+</div>

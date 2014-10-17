@@ -85,6 +85,7 @@ class Accordion extends Widget
      */
     public $headerOptions = [];
 
+
     /**
      * Renders the widget.
      */
@@ -95,12 +96,12 @@ class Accordion extends Widget
         echo Html::beginTag($tag, $options) . "\n";
         echo $this->renderItems() . "\n";
         echo Html::endTag($tag) . "\n";
-        $this->registerWidget('accordion', AccordionAsset::className());
+        $this->registerWidget('accordion');
     }
 
     /**
      * Renders collapsible items as specified on [[items]].
-     * @return string                  the rendering result.
+     * @return string the rendering result.
      * @throws InvalidConfigException.
      */
     protected function renderItems()

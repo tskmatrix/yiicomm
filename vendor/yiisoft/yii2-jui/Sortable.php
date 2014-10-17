@@ -88,6 +88,7 @@ class Sortable extends Widget
         'update' => 'sortupdate',
     ];
 
+
     /**
      * Renders the widget.
      */
@@ -98,12 +99,12 @@ class Sortable extends Widget
         echo Html::beginTag($tag, $options) . "\n";
         echo $this->renderItems() . "\n";
         echo Html::endTag($tag) . "\n";
-        $this->registerWidget('sortable', SortableAsset::className());
+        $this->registerWidget('sortable');
     }
 
     /**
      * Renders sortable items as specified on [[items]].
-     * @return string                  the rendering result.
+     * @return string the rendering result.
      * @throws InvalidConfigException.
      */
     public function renderItems()

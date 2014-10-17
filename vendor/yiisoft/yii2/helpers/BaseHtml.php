@@ -425,6 +425,9 @@ class BaseHtml
      */
     public static function button($content = 'Button', $options = [])
     {
+        if (!isset($options['type'])) {
+            $options['type'] = 'button';
+        }
         return static::tag('button', $content, $options);
     }
 
@@ -620,9 +623,6 @@ class BaseHtml
      *   in HTML code such as an image tag. If this is is coming from end users, you should [[encode()]] it to prevent XSS attacks.
      *   When this option is specified, the radio button will be enclosed by a label tag.
      * - labelOptions: array, the HTML attributes for the label tag. Do not set this option unless you set the "label" option.
-     * - container: array|boolean, the HTML attributes for the container tag. This is only used when the "label" option is specified.
-     *   If it is false, no container will be rendered. If it is an array or not, a "div" container will be rendered
-     *   around the the radio button.
      *
      * The rest of the options will be rendered as the attributes of the resulting radio button tag. The values will
      * be HTML-encoded using [[encode()]]. If a value is null, the corresponding attribute will not be rendered.
@@ -644,14 +644,9 @@ class BaseHtml
         if (isset($options['label'])) {
             $label = $options['label'];
             $labelOptions = isset($options['labelOptions']) ? $options['labelOptions'] : [];
-            $container = isset($options['container']) ? $options['container'] : ['class' => 'radio'];
-            unset($options['label'], $options['labelOptions'], $options['container']);
+            unset($options['label'], $options['labelOptions']);
             $content = static::label(static::input('radio', $name, $value, $options) . ' ' . $label, null, $labelOptions);
-            if (is_array($container)) {
-                return $hidden . static::tag('div', $content, $container);
-            } else {
-                return $hidden . $content;
-            }
+            return $hidden . $content;
         } else {
             return $hidden . static::input('radio', $name, $value, $options);
         }
@@ -670,9 +665,6 @@ class BaseHtml
      *   in HTML code such as an image tag. If this is is coming from end users, you should [[encode()]] it to prevent XSS attacks.
      *   When this option is specified, the checkbox will be enclosed by a label tag.
      * - labelOptions: array, the HTML attributes for the label tag. Do not set this option unless you set the "label" option.
-     * - container: array|boolean, the HTML attributes for the container tag. This is only used when the "label" option is specified.
-     *   If it is false, no container will be rendered. If it is an array or not, a "div" container will be rendered
-     *   around the the radio button.
      *
      * The rest of the options will be rendered as the attributes of the resulting checkbox tag. The values will
      * be HTML-encoded using [[encode()]]. If a value is null, the corresponding attribute will not be rendered.
@@ -694,14 +686,9 @@ class BaseHtml
         if (isset($options['label'])) {
             $label = $options['label'];
             $labelOptions = isset($options['labelOptions']) ? $options['labelOptions'] : [];
-            $container = isset($options['container']) ? $options['container'] : ['class' => 'checkbox'];
-            unset($options['label'], $options['labelOptions'], $options['container']);
+            unset($options['label'], $options['labelOptions']);
             $content = static::label(static::input('checkbox', $name, $value, $options) . ' ' . $label, null, $labelOptions);
-            if (is_array($container)) {
-                return $hidden . static::tag('div', $content, $container);
-            } else {
-                return $hidden . $content;
-            }
+            return $hidden . $content;
         } else {
             return $hidden . static::input('checkbox', $name, $value, $options);
         }
@@ -798,13 +785,13 @@ class BaseHtml
         if (!array_key_exists('size', $options)) {
             $options['size'] = 4;
         }
-        if (!empty($options['multiple']) && !empty($name) && substr_compare($name, '[]', -2)) {
+        if (!empty($options['multiple']) && !empty($name) && substr_compare($name, '[]', -2, 2)) {
             $name .= '[]';
         }
         $options['name'] = $name;
         if (isset($options['unselect'])) {
             // add a hidden field so that if the list box has no option being selected, it still submits a value
-            if (!empty($name) && substr_compare($name, '[]', -2) === 0) {
+            if (!empty($name) && substr_compare($name, '[]', -2, 2) === 0) {
                 $name = substr($name, 0, -2);
             }
             $hidden = static::hiddenInput($name, $options['unselect']);
@@ -1245,7 +1232,7 @@ class BaseHtml
     }
 
     /**
-     * Generates a radio button tag for the given model attribute.
+     * Generates a radio button tag together with a label for the given model attribute.
      * This method will generate the "checked" tag attribute according to the model attribute value.
      * @param Model $model the model object
      * @param string $attribute the attribute name or expression. See [[getAttributeName()]] for the format
@@ -1258,7 +1245,9 @@ class BaseHtml
      *   via the hidden input.
      * - label: string, a label displayed next to the radio button.  It will NOT be HTML-encoded. Therefore you can pass
      *   in HTML code such as an image tag. If this is is coming from end users, you should [[encode()]] it to prevent XSS attacks.
-     *   When this option is specified, the radio button will be enclosed by a label tag.
+     *   The radio button will be enclosed by the label tag. Note that if you do not specify this option, a default label
+     *   will be used based on the attribute label declaration in the model. If you do not want any label, you should
+     *   explicitly set this option as null.
      * - labelOptions: array, the HTML attributes for the label tag. This is only used when the "label" option is specified.
      *
      * The rest of the options will be rendered as the attributes of the resulting tag. The values will
@@ -1279,6 +1268,9 @@ class BaseHtml
         if (!array_key_exists('uncheck', $options)) {
             $options['uncheck'] = '0';
         }
+        if (!array_key_exists('label', $options)) {
+            $options['label'] = static::encode($model->getAttributeLabel(static::getAttributeName($attribute)));
+        }
 
         $checked = "$value" === "{$options['value']}";
 
@@ -1290,7 +1282,7 @@ class BaseHtml
     }
 
     /**
-     * Generates a checkbox tag for the given model attribute.
+     * Generates a checkbox tag together with a label for the given model attribute.
      * This method will generate the "checked" tag attribute according to the model attribute value.
      * @param Model $model the model object
      * @param string $attribute the attribute name or expression. See [[getAttributeName()]] for the format
@@ -1303,7 +1295,9 @@ class BaseHtml
      *   via the hidden input.
      * - label: string, a label displayed next to the checkbox.  It will NOT be HTML-encoded. Therefore you can pass
      *   in HTML code such as an image tag. If this is is coming from end users, you should [[encode()]] it to prevent XSS attacks.
-     *   When this option is specified, the checkbox will be enclosed by a label tag.
+     *   The checkbox will be enclosed by the label tag. Note that if you do not specify this option, a default label
+     *   will be used based on the attribute label declaration in the model. If you do not want any label, you should
+     *   explicitly set this option as null.
      * - labelOptions: array, the HTML attributes for the label tag. This is only used when the "label" option is specified.
      *
      * The rest of the options will be rendered as the attributes of the resulting tag. The values will
@@ -1322,6 +1316,9 @@ class BaseHtml
         }
         if (!array_key_exists('uncheck', $options)) {
             $options['uncheck'] = '0';
+        }
+        if (!array_key_exists('label', $options)) {
+            $options['label'] = static::encode($model->getAttributeLabel(static::getAttributeName($attribute)));
         }
 
         $checked = "$value" === "{$options['value']}";
@@ -1557,7 +1554,7 @@ class BaseHtml
         $groups = isset($tagOptions['groups']) ? $tagOptions['groups'] : [];
         unset($tagOptions['prompt'], $tagOptions['options'], $tagOptions['groups']);
         $options['encodeSpaces'] = ArrayHelper::getValue($options, 'encodeSpaces', $encodeSpaces);
-        
+
         foreach ($items as $key => $value) {
             if (is_array($value)) {
                 $groupAttrs = isset($groups[$key]) ? $groups[$key] : [];
@@ -1706,9 +1703,9 @@ class BaseHtml
                     }
                 }
             }
-            $style = static::cssStyleFromArray(array_merge($oldStyle, $newStyle));
+            $style = array_merge($oldStyle, $newStyle);
         }
-        $options['style'] = $style;
+        $options['style'] = is_array($style) ? static::cssStyleFromArray($style) : $style;
     }
 
     /**

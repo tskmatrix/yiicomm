@@ -1,12 +1,12 @@
 <?php
 
 /**
- * HighstockWidget class file.
+ * Highstock class file.
  *
  * @author Milo Schuman <miloschuman@gmail.com>
- * @link https://github.com/miloschuman/yii2-highcharts-widget/
+ * @link https://github.com/miloschuman/yii2-highcharts/
  * @license http://www.opensource.org/licenses/mit-license.php MIT License
- * @version 4.0.1
+ * @version 4.0.4
  */
 
 namespace miloschuman\highcharts;

@@ -8,22 +8,22 @@
 namespace yii\jui;
 
 use Yii;
+use yii\base\InvalidParamException;
+use yii\helpers\FormatConverter;
 use yii\helpers\Html;
 use yii\helpers\Json;
 
 /**
- * DatePicker renders a datepicker jQuery UI widget.
+ * DatePicker renders a `datepicker` jQuery UI widget.
  *
- * For example:
+ * For example to use the datepicker with a [[yii\base\Model|model]]:
  *
  * ```php
  * echo DatePicker::widget([
- *     'language' => 'ru',
  *     'model' => $model,
- *     'attribute' => 'country',
- *     'clientOptions' => [
- *         'dateFormat' => 'yy-mm-dd',
- *     ],
+ *     'attribute' => 'from_date',
+ *     //'language' => 'ru',
+ *     //'dateFormat' => 'yyyy-MM-dd',
  * ]);
  * ```
  *
@@ -31,16 +31,16 @@ use yii\helpers\Json;
  *
  * ```php
  * echo DatePicker::widget([
- *     'language' => 'ru',
- *     'name'  => 'country',
- *     'clientOptions' => [
- *         'dateFormat' => 'yy-mm-dd',
- *     ],
+ *     'name'  => 'from_date',
+ *     'value'  => $value,
+ *     //'language' => 'ru',
+ *     //'dateFormat' => 'yyyy-MM-dd',
  * ]);
- *```
+ * ```
  *
  * @see http://api.jqueryui.com/datepicker/
  * @author Alexander Kochetov <creocoder@gmail.com>
+ * @author Carsten Brandt <mail@cebe.cc>
  * @since 2.0
  */
 class DatePicker extends InputWidget
@@ -59,6 +59,38 @@ class DatePicker extends InputWidget
      * @see \yii\helpers\Html::renderTagAttributes() for details on how attributes are being rendered.
      */
     public $containerOptions = [];
+    /**
+     * @var string the format string to be used for formatting the date value. This option will be used
+     * to populate the [[clientOptions|clientOption]] `dateFormat`.
+     * The value can be one of "short", "medium", "long", or "full", which represents a preset format of different lengths.
+     *
+     * It can also be a custom format as specified in the [ICU manual](http://userguide.icu-project.org/formatparse/datetime#TOC-Date-Time-Format-Syntax).
+     * Alternatively this can be a string prefixed with `php:` representing a format that can be recognized by the
+     * PHP [date()](http://php.net/manual/de/function.date.php)-function.
+     *
+     * For example:
+     *
+     * ```php
+     * 'MM/dd/yyyy' // date in ICU format
+     * 'php:m/d/Y' // the same date in PHP format
+     * ```
+     *
+     * If not set the default value will be taken from `Yii::$app->formatter->dateFormat`.
+     */
+    public $dateFormat;
+    /**
+     * @var string the model attribute that this widget is associated with.
+     * The value of the attribute will be converted using [[\yii\i18n\Formatter::asDate()|`Yii::$app->formatter->asDate()`]]
+     * with the [[dateFormat]] if it is not null.
+     */
+    public $attribute;
+    /**
+     * @var string the input value.
+     * This value will be converted using [[\yii\i18n\Formatter::asDate()|`Yii::$app->formatter->asDate()`]]
+     * with the [[dateFormat]] if it is not null.
+     */
+    public $value;
+
 
     /**
      * @inheritdoc
@@ -69,6 +101,9 @@ class DatePicker extends InputWidget
         if ($this->inline && !isset($this->containerOptions['id'])) {
             $this->containerOptions['id'] = $this->options['id'] . '-container';
         }
+        if ($this->dateFormat === null) {
+            $this->dateFormat = Yii::$app->formatter->dateFormat;
+        }
     }
 
     /**
@@ -77,22 +112,32 @@ class DatePicker extends InputWidget
     public function run()
     {
         echo $this->renderWidget() . "\n";
+
         $containerID = $this->inline ? $this->containerOptions['id'] : $this->options['id'];
         $language = $this->language ? $this->language : Yii::$app->language;
-        if ($language != 'en') {
-            $view = $this->getView();
-            DatePickerRegionalAsset::register($view);
 
+        if (strncmp($this->dateFormat, 'php:', 4) === 0) {
+            $this->clientOptions['dateFormat'] = FormatConverter::convertDatePhpToJui(substr($this->dateFormat, 4), 'date', $language);
+        } else {
+            $this->clientOptions['dateFormat'] = FormatConverter::convertDateIcuToJui($this->dateFormat, 'date', $language);
+        }
+
+        if ($language != 'en-US') {
+            $view = $this->getView();
+            $bundle = DatePickerLanguageAsset::register($view);
+            if ($bundle->autoGenerate) {
+                $view->registerJsFile($bundle->baseUrl . "/ui/i18n/datepicker-$language.js", [
+                    'depends' => [JuiAsset::className()],
+                ]);
+            }
             $options = Json::encode($this->clientOptions);
             $view->registerJs("$('#{$containerID}').datepicker($.extend({}, $.datepicker.regional['{$language}'], $options));");
-
-            $options = $this->clientOptions;
-            $this->clientOptions = false; // the datepicker js widget is already registered
-            $this->registerWidget('datepicker', DatePickerAsset::className(), $containerID);
-            $this->clientOptions = $options;
         } else {
-            $this->registerWidget('datepicker', DatePickerAsset::className(), $containerID);
+            $this->registerClientOptions('datepicker', $containerID);
         }
+
+        $this->registerClientEvents('datepicker', $containerID);
+        JuiAsset::register($this->getView());
     }
 
     /**
@@ -103,20 +148,38 @@ class DatePicker extends InputWidget
     {
         $contents = [];
 
+        // get formatted date value
+        if ($this->hasModel()) {
+            $value = Html::getAttributeValue($this->model, $this->attribute);
+        } else {
+            $value = $this->value;
+        }
+        if ($value !== null) {
+            // format value according to dateFormat
+            try {
+                $value = Yii::$app->formatter->asDate($value, $this->dateFormat);
+            } catch(InvalidParamException $e) {
+                // ignore exception and keep original value if it is not a valid date
+            }
+        }
+        $options = $this->options;
+        $options['value'] = $value;
+
         if ($this->inline === false) {
+            // render a text input
             if ($this->hasModel()) {
-                $contents[] = Html::activeTextInput($this->model, $this->attribute, $this->options);
+                $contents[] = Html::activeTextInput($this->model, $this->attribute, $options);
             } else {
-                $contents[] = Html::textInput($this->name, $this->value, $this->options);
+                $contents[] = Html::textInput($this->name, $value, $options);
             }
         } else {
+            // render an inline date picker with hidden input
             if ($this->hasModel()) {
-                $contents[] = Html::activeHiddenInput($this->model, $this->attribute, $this->options);
-                $this->clientOptions['defaultDate'] = $this->model->{$this->attribute};
+                $contents[] = Html::activeHiddenInput($this->model, $this->attribute, $options);
             } else {
-                $contents[] = Html::hiddenInput($this->name, $this->value, $this->options);
-                $this->clientOptions['defaultDate'] = $this->value;
+                $contents[] = Html::hiddenInput($this->name, $value, $options);
             }
+            $this->clientOptions['defaultDate'] = $value;
             $this->clientOptions['altField'] = '#' . $this->options['id'];
             $contents[] = Html::tag('div', null, $this->containerOptions);
         }

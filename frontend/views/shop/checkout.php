@@ -1,9 +1,21 @@
 <?php
-/* @var $this yii\web\View */
-?>
-<h1>shop/checkout</h1>
+use frontend\assets\IndexAsset;
+use yii\helpers\Html;
 
+IndexAsset::register ( $this );
+
+/* @var $this yii\web\View */
+
+$this->title = 'Yiicomm - Checkout';
+$this->params['breadcrumbs'][] = $this->title;
+?>
+<p><?php echo $this->params['breadcrumbs'][] = $this->title;?></p>
 <p>
-    You may change the content of this page by modifying
-    the file <code><?= __FILE__; ?></code>.
+    <?php echo $message ?>
 </p>
+<?php /*
+echo '<pre></br>';
+print_r($cust);
+echo '</pre>';
+*/
+?>

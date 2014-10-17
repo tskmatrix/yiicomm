@@ -2,16 +2,25 @@
 
 namespace frontend\controllers;
 
+use Yii;
 use yii\data\Pagination;
 use common\models\Productcategories;
 use common\models\Products;
 use common\models\Productmedias;
+use common\models\Customers;
 
 class ShopController extends \yii\web\Controller
 {
     public function actionCheckout()
     {
-        return $this->render('checkout');
+    	$uid = Yii::$app->user->id;
+    	$query = Customers::find()->with('user')->where('UserId = '. $uid)->all();
+    	if(! empty($query)){
+    		$message = 'Is a customer';
+    	} else {
+    		$message = 'Not a customer';
+    	}
+        return $this->render('checkout', ['message'=>$message, 'cust'=>$query]);
     }
 
     public function actionIndex($id = null)
@@ -52,6 +61,8 @@ class ShopController extends \yii\web\Controller
 
     public function actionNewcustomer()
     {
+    	
+    	
         return $this->render('newcustomer');
     }
 

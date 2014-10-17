@@ -101,20 +101,20 @@ use yii\helpers\VarDumper;
  * //list all templates under specified template path
  * yii fixture/templates --templatePath='@app/path/to/my/custom/templates'
  * ~~~
- * 
+ *
  * You also can create your own data providers for custom tables fields, see Faker library guide for more info (https://github.com/fzaninotto/Faker);
  * After you created custom provider, for example:
  *
  * ~~~
  * class Book extends \Faker\Provider\Base
  * {
- * 
+ *
  *     public function title($nbWords = 5)
  *     {
  *         $sentence = $this->generator->sentence($nbWords);
  *         return mb_substr($sentence, 0, mb_strlen($sentence) - 1);
  *     }
- * 
+ *
  * }
  * ~~~
  *
@@ -130,6 +130,8 @@ use yii\helpers\VarDumper;
  *        ],
  *    ],
  * ~~~
+ *
+ * @property \Faker\Generator $generator This property is read-only.
  *
  * @author Mark Jebri <mark.github@yandex.ru>
  * @since 2.0.0
@@ -168,10 +170,10 @@ class FixtureController extends \yii\console\controllers\FixtureController
     /**
      * @inheritdoc
      */
-    public function options($actionId)
+    public function options($actionID)
     {
-        return array_merge(parent::options($actionId), [
-            'templatePath', 'language', 'fixtureDataPath'
+        return array_merge(parent::options($actionID), [
+            'templatePath', 'language', 'fixtureDataPath', 'count'
         ]);
     }
 
@@ -338,7 +340,7 @@ class FixtureController extends \yii\console\controllers\FixtureController
     }
 
     /**
-     * Returns array containg fixtures templates file names. You can specify what files to find
+     * Returns array containing fixtures templates file names. You can specify what files to find
      * by the given parameter.
      * @param array $templatesNames template file names to search. If empty then all files will be searched.
      * @return array
@@ -428,9 +430,9 @@ class FixtureController extends \yii\console\controllers\FixtureController
 
     /**
      * Generates fixture file by the given fixture template file.
-     * @param type $templateName template file name
-     * @param type $templatePath path where templates are stored
-     * @param type $fixtureDataPath fixture data path where generated file should be written
+     * @param string $templateName template file name
+     * @param string $templatePath path where templates are stored
+     * @param string $fixtureDataPath fixture data path where generated file should be written
      */
     public function generateFixtureFile($templateName, $templatePath, $fixtureDataPath)
     {

@@ -88,6 +88,19 @@ AppAsset::register($this);
 	            	]];
             }
             
+            if(!Yii::$app->user->can('marketinggmanager'))
+            {
+            	$menuItems[] = ['label' => 'Orders and Shipping', 'items' => [
+		            	['label'=> 'Order Statuses', 'url' => ['/orderstatuses/index']],
+		            	['label'=> 'Orders', 'url' => ['/orders/index']],
+		            	['label'=> 'Order Details', 'url' => ['/orderdetails/index']],
+		            	['label'=> 'Shipping Satauses', 'url' => ['/shippingstatuses/index']],
+		            	['label'=> 'Shipping Types', 'url' => ['/shippingtypes/index']],
+		            	['label'=> 'Shippings', 'url' => ['/shippings/index']],
+		            	['label'=> 'Warehouses', 'url' => ['/warehouses/index']],
+	            	]];
+            }
+            
             if (Yii::$app->user->isGuest) {
                 $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
             } else {

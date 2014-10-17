@@ -1,11 +1,12 @@
 <?php
-use yii\helpers\Html;
-use yii\widgets\ActiveForm;
+//use yii\helpers\Html;
+use kartik\helpers\Html;
+use yii\bootstrap\ActiveForm;
 use yii\captcha\Captcha;
 use frontend\assets\IndexAsset;
 
 /* @var $this yii\web\View */
-/* @var $form yii\widgets\ActiveForm */
+/* @var $form yii\bootstrap\ActiveForm */
 /* @var $model \frontend\models\ContactForm */
 
 IndexAsset::register($this);
@@ -27,12 +28,18 @@ $this->params['breadcrumbs'][] = $this->title;
                 <div class="col-md-4 col-sm-4">
                     <section><!-- Contacts -->
                         <h4 class="content-title">Contacts Details</h4>
-                        <ul class="list-unstyled margin-bottom-20">
+		                   <?php  echo Html::address(
+					           'My Company, Inc.',
+					           ['<i class="fa fa-map-marker"></i> 795 Folsom Ave, Suite 600', 'San Francisco, CA 94107'],
+					           ['Res' => '<i class="fa fa-phone"></i> (123) 456-7890', 'Off'=> '<i class="fa fa-phone"></i> (456) 789-0123'],
+					           ['Res' => '<i class="fa fa-envelope"></i> first.last@example.com', 'Off' => '<i class="fa fa-envelope"></i> last.first@example.com']
+					      );?>
+                       <!--  <ul class="list-unstyled margin-bottom-20">
                             <li><i class="fa fa-map-marker"></i> 110 Vintage Park Boulevard, Houston, TX 77070</li>
                             <li><i class="fa fa-envelope"></i> info@example.com</li>
                             <li><i class="fa fa-phone"></i> 1(281) 3x0 x52x</li>
                             <li><i class="fa fa-globe"></i> http://www.example.com</li>
-                        </ul>
+                        </ul> -->
                     </section>
                 </div>
                 <div class="col-md-4 col-sm-4">
@@ -50,9 +57,9 @@ $this->params['breadcrumbs'][] = $this->title;
                         <h4 class="content-title">About Us</h4>
                         <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum.</p>
                         <ul>
-                            <li class="fa fa-check">Odio dignissimos ducimus</li><br/>
-                            <li class="fa fa-check">Blanditiis praesentium volup</li><br/>
-                            <li class="fa fa-check">Eos et accusamus</li>
+                            <li class="fa fa-check"> Odio dignissimos ducimus</li><br/>
+                            <li class="fa fa-check"> Blanditiis praesentium volup</li><br/>
+                            <li class="fa fa-check"> Eos et accusamus</li>
                         </ul>
                     </section>
                 </div>
@@ -63,12 +70,27 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <div class="row">
         <div class="col-lg-5">
-            <?php $form = ActiveForm::begin(['id' => 'contact-form']); ?>
-                <?= $form->field($model, 'name')->textInput()->hint('Please enter your name') ?>
-                <?= $form->field($model, 'email') ?>
-                <?= $form->field($model, 'subject')->dropDownList(['0' => 'Please Select', '1' => 'General inqury', '2' => 'I need Support']) ?>
-                <?= $form->field($model, 'body')->textArea(['rows' => 6]) ?>
-                <?= $form->field($model, 'verifyCode')->widget(Captcha::className(), [
+            <?php $form = ActiveForm::begin(['layout' => 'horizontal','id' => 'contact-form']); ?>
+                <?= $form->field($model, 'name', [
+    'horizontalCssClasses' => [
+        'wrapper' => 'col-sm-4',
+    ]])->textInput()->hint('Please enter your name') ?>
+                <?= $form->field($model, 'email', [
+    'horizontalCssClasses' => [
+        'wrapper' => 'col-sm-4',
+    ]]) ?>
+                <?= $form->field($model, 'subject', [
+    'horizontalCssClasses' => [
+        'wrapper' => 'col-sm-4',
+    ]])->dropDownList(['0' => 'Please Select', '1' => 'General inqury', '2' => 'I need Support']) ?>
+                <?= $form->field($model, 'body', [
+    'horizontalCssClasses' => [
+        'wrapper' => 'col-lg-6',
+    ]])->textArea(['rows' => 6]) ?>
+                <?= $form->field($model, 'verifyCode', [
+    'horizontalCssClasses' => [
+        'wrapper' => 'col-lg-11',
+    ]])->widget(Captcha::className(), [
                     'template' => '<div class="row"><div class="col-lg-3">{image}</div><div class="col-lg-6">{input}</div></div>',
                 ]) ?>
                 <div class="form-group">

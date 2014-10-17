@@ -24,7 +24,8 @@
         "miloschuman/yii2-highcharts-widget": "dev-master",
         "kartik-v/yii2-password": "dev-master",
         "pfarrer/yii2-email-obfuscator": "dev-master",
-        "philippfrenzel/yii2fullcalendar": "dev-master"
+        "philippfrenzel/yii2fullcalendar": "dev-master",
+        "monitorbacklinks/yii2-wordpress": "dev-master"
     },
     "require-dev": {
         "yiisoft/yii2-codeception": "*",
@@ -34,5 +35,11 @@
     },
     "config": {
         "process-timeout": 1800
-    }
+    },
+    "extra": {
+	    "asset-installer-paths": {
+	        "npm-asset-library": "vendor/npm",
+	        "bower-asset-library": "vendor/bower"
+	    }
+	}
 }
